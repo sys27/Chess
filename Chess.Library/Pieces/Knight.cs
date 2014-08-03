@@ -13,8 +13,8 @@ namespace Chess.Library.Pieces
         public Knight(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 
-        public Knight(int x, int y, PieceColor color)
-            : base(x, y, color) { }
+        public Knight(int y, int x, PieceColor color)
+            : base(y, x, color) { }
 
     }
 

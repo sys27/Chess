@@ -13,8 +13,8 @@ namespace Chess.Library.Pieces
         public Pawn(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 
-        public Pawn(int x, int y, PieceColor color)
-            : base(x, y, color) { }
+        public Pawn(int y, int x, PieceColor color)
+            : base(y, x, color) { }
 
     }
 

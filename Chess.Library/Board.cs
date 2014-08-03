@@ -24,10 +24,6 @@ namespace Chess.Library
             {
                 return board[y][x];
             }
-            set
-            {
-                board[y][x] = value;
-            }
         }
 
         private void InitializeBoard()

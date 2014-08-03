@@ -19,8 +19,8 @@ namespace Chess.Library.Pieces
             this.color = color;
         }
 
-        protected Piece(int x, int y, PieceColor color)
-            : this(new BoardPoint(x, y), color) { }
+        protected Piece(int y, int x, PieceColor color)
+            : this(new BoardPoint(y, x), color) { }
 
         public override bool Equals(object obj)
         {

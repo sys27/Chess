@@ -13,8 +13,8 @@ namespace Chess.Library.Pieces
         public Bishop(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 
-        public Bishop(int x, int y, PieceColor color)
-            : base(x, y, color) { }
+        public Bishop(int y, int x, PieceColor color)
+            : base(y, x, color) { }
 
     }
 

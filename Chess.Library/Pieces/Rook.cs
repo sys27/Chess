@@ -13,8 +13,8 @@ namespace Chess.Library.Pieces
         public Rook(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 
-        public Rook(int x, int y, PieceColor color)
-            : base(x, y, color) { }
+        public Rook(int y, int x, PieceColor color)
+            : base(y, x, color) { }
 
     }
 

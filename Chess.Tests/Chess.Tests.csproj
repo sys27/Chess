@@ -51,6 +51,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BoardTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Chess.Library\Chess.Library.csproj">
+      <Project>{b86fda77-bb11-4ae6-8a3a-0fdd4b2248c2}</Project>
+      <Name>Chess.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
