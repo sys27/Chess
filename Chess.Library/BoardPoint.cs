@@ -13,7 +13,7 @@ namespace Chess.Library
         private readonly int x;
         private readonly int y;
 
-        public BoardPoint(int x, int y)
+        public BoardPoint(int y, int x)
         {
             this.x = x;
             this.y = y;

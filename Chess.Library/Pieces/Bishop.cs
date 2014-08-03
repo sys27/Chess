@@ -10,6 +10,12 @@ namespace Chess.Library.Pieces
     public class Bishop : Piece
     {
 
+        public Bishop(BoardPoint coordinates, PieceColor color)
+            : base(coordinates, color) { }
+
+        public Bishop(int x, int y, PieceColor color)
+            : base(x, y, color) { }
+
     }
 
 }
