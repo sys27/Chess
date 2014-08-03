@@ -22,6 +22,18 @@ namespace Chess.Library.Pieces
         protected Piece(int x, int y, PieceColor color)
             : this(new BoardPoint(x, y), color) { }
 
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+                return true;
+
+            var piece = obj as Piece;
+            if (piece == null)
+                return false;
+
+            return coordinates == piece.coordinates && color == piece.color;
+        }
+
         public BoardPoint Coordinates
         {
             get

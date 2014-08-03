@@ -18,6 +18,18 @@ namespace Chess.Library
             InitializeBoard();
         }
 
+        public Piece this[int y, int x]
+        {
+            get
+            {
+                return board[y][x];
+            }
+            set
+            {
+                board[y][x] = value;
+            }
+        }
+
         private void InitializeBoard()
         {
             board = new Piece[8][];
