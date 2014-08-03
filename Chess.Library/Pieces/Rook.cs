@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Chess.Library.Pieces
 {
     
-    public class Rook : IPiece
+    public class Rook : Piece
     {
 
     }
