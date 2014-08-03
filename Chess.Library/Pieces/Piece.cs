@@ -27,10 +27,10 @@ namespace Chess.Library.Pieces
             if (this == obj)
                 return true;
 
-            var piece = obj as Piece;
-            if (piece == null)
+            if (obj == null || GetType() != obj.GetType())
                 return false;
 
+            var piece = (Piece)obj;
             return coordinates == piece.coordinates && color == piece.color;
         }
 
