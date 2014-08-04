@@ -12,10 +12,14 @@ namespace Chess.Library
     {
 
         private Piece[][] board;
+        // todo: ...
+        private List<PieceMove> moves;
 
         public Board()
         {
             InitializeBoard();
+
+            moves = new List<PieceMove>();
         }
 
         public Piece this[int y, int x]
