@@ -21,7 +21,7 @@ namespace Chess.Library.Pieces
             return base.ToString("King");
         }
 
-        public override bool[][] GetAvailableMoves()
+        public override bool[][] GetAvailableMoves(Board board)
         {
             throw new NotImplementedException();
         }

@@ -39,17 +39,17 @@ namespace Chess.Library.Pieces
             return string.Format("{0}: {1}, {2}", pieceName, coordinates.Y, coordinates.X);
         }
 
-        public bool CanMove(int y, int x)
+        public bool CanMove(Board board, int y, int x)
         {
-            return GetAvailableMoves()[y][x];
+            return GetAvailableMoves(board)[y][x];
         }
 
-        public bool CanMove(BoardPoint to)
+        public bool CanMove(Board board, BoardPoint to)
         {
-            return CanMove(to.Y, to.X);
+            return CanMove(board, to.Y, to.X);
         }
 
-        public abstract bool[][] GetAvailableMoves();
+        public abstract bool[][] GetAvailableMoves(Board board);
 
         public BoardPoint Coordinates
         {

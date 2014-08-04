@@ -21,9 +21,49 @@ namespace Chess.Library.Pieces
             return base.ToString("Rook");
         }
 
-        public override bool[][] GetAvailableMoves()
+        public override bool[][] GetAvailableMoves(Board board)
         {
-            throw new NotImplementedException();
+            var result = new bool[8][];
+            for (int i = 0; i < result.Length; i++)
+                result[i] = new bool[8];
+
+            // left
+            for (int i = coordinates.X; i >= 0; i--)
+            {
+                if (board[coordinates.Y, i] != null)
+                    break;
+
+                result[coordinates.Y][i] = true;
+            }
+
+            // right
+            for (int i = coordinates.X; i < 8; i++)
+            {
+                if (board[coordinates.Y, i] != null)
+                    break;
+
+                result[coordinates.Y][i] = true;
+            }
+
+            // up
+            for (int i = coordinates.Y; i > 0; i--)
+            {
+                if (board[i, coordinates.X] != null)
+                    break;
+
+                result[i][coordinates.X] = true;
+            }
+
+            // down
+            for (int i = coordinates.Y; i < 8; i++)
+            {
+                if (board[i, coordinates.X] != null)
+                    break;
+
+                result[i][coordinates.X] = true;
+            }
+
+            return result;
         }
 
     }

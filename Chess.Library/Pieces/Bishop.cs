@@ -20,8 +20,8 @@ namespace Chess.Library.Pieces
         {
             return base.ToString("Bishop");
         }
-        
-        public override bool[][] GetAvailableMoves()
+
+        public override bool[][] GetAvailableMoves(Board board)
         {
             throw new NotImplementedException();
         }
