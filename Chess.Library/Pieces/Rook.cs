@@ -24,7 +24,7 @@ namespace Chess.Library.Pieces
         public override bool[][] GetAvailableMoves(Board board)
         {
             var result = new bool[8][];
-            for (int i = 0; i < result.Length; i++)
+            for (int i = 0; i < 8; i++)
                 result[i] = new bool[8];
 
             // left

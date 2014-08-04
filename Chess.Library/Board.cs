@@ -29,6 +29,14 @@ namespace Chess.Library
             }
         }
 
+        public Piece this[BoardPoint position]
+        {
+            get
+            {
+                return this[position.Y, position.X];
+            }
+        }
+
         private void InitializeBoard()
         {
             board = new Piece[8][];

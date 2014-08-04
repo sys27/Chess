@@ -23,7 +23,71 @@ namespace Chess.Library.Pieces
 
         public override bool[][] GetAvailableMoves(Board board)
         {
-            throw new NotImplementedException();
+            var result = new bool[8][];
+            for (int i = 0; i < 8; i++)
+                result[i] = new bool[8];
+
+            // up-left
+            for (int x = coordinates.X, y = coordinates.Y; x >= 0 && y >= 0; x--, y--)
+            {
+                var piece = board[y, x];
+                if (piece != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[y][x] = true;
+
+                    break;
+                }
+
+                result[y][x] = true;
+            }
+
+            // up-right
+            for (int x = coordinates.X, y = coordinates.Y; x < 8 && y >= 0; x++, y--)
+            {
+                var piece = board[y, x];
+                if (piece != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[y][x] = true;
+
+                    break;
+                }
+
+                result[y][x] = true;
+            }
+
+            // down-left
+            for (int x = coordinates.X, y = coordinates.Y; x >= 0 && y < 8; x--, y++)
+            {
+                var piece = board[y, x];
+                if (piece != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[y][x] = true;
+
+                    break;
+                }
+
+                result[y][x] = true;
+            }
+
+            // down-right
+            for (int x = coordinates.X, y = coordinates.Y; x < 8 && y < 8; x++, y++)
+            {
+                var piece = board[y, x];
+                if (piece != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[y][x] = true;
+
+                    break;
+                }
+
+                result[y][x] = true;
+            }
+
+            return result;
         }
 
     }
