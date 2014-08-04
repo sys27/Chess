@@ -12,7 +12,6 @@ namespace Chess.Library
     {
 
         private Piece[][] board;
-        // todo: ...
         private List<PieceMove> moves;
 
         public Board()

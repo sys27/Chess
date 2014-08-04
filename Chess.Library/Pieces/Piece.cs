@@ -39,9 +39,15 @@ namespace Chess.Library.Pieces
             return string.Format("{0}: {1}, {2}", pieceName, coordinates.Y, coordinates.X);
         }
 
-        public abstract bool CanMove(int y, int x);
+        public bool CanMove(int y, int x)
+        {
+            return GetAvailableMoves()[y][x];
+        }
 
-        public abstract bool CanMove(BoardPoint to);
+        public bool CanMove(BoardPoint to)
+        {
+            return CanMove(to.Y, to.X);
+        }
 
         public abstract bool[][] GetAvailableMoves();
 

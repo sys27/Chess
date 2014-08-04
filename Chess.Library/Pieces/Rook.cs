@@ -20,16 +20,6 @@ namespace Chess.Library.Pieces
         {
             return base.ToString("Rook");
         }
-        
-        public override bool CanMove(int y, int x)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool CanMove(BoardPoint to)
-        {
-            throw new NotImplementedException();
-        }
 
         public override bool[][] GetAvailableMoves()
         {
