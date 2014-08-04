@@ -30,8 +30,14 @@ namespace Chess.Library.Pieces
             // left
             for (int i = coordinates.X; i >= 0; i--)
             {
-                if (board[coordinates.Y, i] != null)
+                var piece = board[coordinates.Y, i];
+                if (piece != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[coordinates.Y][i] = true;
+
                     break;
+                }
 
                 result[coordinates.Y][i] = true;
             }
@@ -39,8 +45,14 @@ namespace Chess.Library.Pieces
             // right
             for (int i = coordinates.X; i < 8; i++)
             {
-                if (board[coordinates.Y, i] != null)
+                var piece = board[coordinates.Y, i];
+                if (piece != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[coordinates.Y][i] = true;
+
                     break;
+                }
 
                 result[coordinates.Y][i] = true;
             }
@@ -48,8 +60,14 @@ namespace Chess.Library.Pieces
             // up
             for (int i = coordinates.Y; i > 0; i--)
             {
-                if (board[i, coordinates.X] != null)
+                var piece = board[i, coordinates.X];
+                if (piece != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[i][coordinates.X] = true;
+
                     break;
+                }
 
                 result[i][coordinates.X] = true;
             }
@@ -57,8 +75,14 @@ namespace Chess.Library.Pieces
             // down
             for (int i = coordinates.Y; i < 8; i++)
             {
+                var piece = board[i, coordinates.X];
                 if (board[i, coordinates.X] != null)
+                {
+                    if (piece.Color != color && !(piece is King))
+                        result[i][coordinates.X] = true;
+
                     break;
+                }
 
                 result[i][coordinates.X] = true;
             }
