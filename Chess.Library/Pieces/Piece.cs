@@ -34,6 +34,17 @@ namespace Chess.Library.Pieces
             return coordinates == piece.coordinates && color == piece.color;
         }
 
+        protected string ToString(string pieceName)
+        {
+            return string.Format("{0}: {1}, {2}", pieceName, coordinates.Y, coordinates.X);
+        }
+
+        public abstract bool CanMove(int y, int x);
+
+        public abstract bool CanMove(BoardPoint to);
+
+        public abstract bool[][] GetAvailableMoves();
+
         public BoardPoint Coordinates
         {
             get
