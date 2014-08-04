@@ -10,6 +10,9 @@ namespace Chess.Library.Pieces
     public class Knight : Piece
     {
 
+        public Knight(PieceColor color)
+            : base(color) { }
+
         public Knight(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 

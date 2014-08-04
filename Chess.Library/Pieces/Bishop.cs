@@ -10,6 +10,9 @@ namespace Chess.Library.Pieces
     public class Bishop : Piece
     {
 
+        public Bishop(PieceColor color)
+            : base(color) { }
+
         public Bishop(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 
@@ -28,7 +31,7 @@ namespace Chess.Library.Pieces
                 result[i] = new bool[8];
 
             // up-left
-            for (int x = coordinates.X, y = coordinates.Y; x >= 0 && y >= 0; x--, y--)
+            for (int x = coordinates.X - 1, y = coordinates.Y - 1; x >= 0 && y >= 0; x--, y--)
             {
                 var piece = board[y, x];
                 if (piece != null)
@@ -43,7 +46,7 @@ namespace Chess.Library.Pieces
             }
 
             // up-right
-            for (int x = coordinates.X, y = coordinates.Y; x < 8 && y >= 0; x++, y--)
+            for (int x = coordinates.X + 1, y = coordinates.Y - 1; x < 8 && y >= 0; x++, y--)
             {
                 var piece = board[y, x];
                 if (piece != null)
@@ -58,7 +61,7 @@ namespace Chess.Library.Pieces
             }
 
             // down-left
-            for (int x = coordinates.X, y = coordinates.Y; x >= 0 && y < 8; x--, y++)
+            for (int x = coordinates.X - 1, y = coordinates.Y + 1; x >= 0 && y < 8; x--, y++)
             {
                 var piece = board[y, x];
                 if (piece != null)
@@ -73,7 +76,7 @@ namespace Chess.Library.Pieces
             }
 
             // down-right
-            for (int x = coordinates.X, y = coordinates.Y; x < 8 && y < 8; x++, y++)
+            for (int x = coordinates.X + 1, y = coordinates.Y + 1; x < 8 && y < 8; x++, y++)
             {
                 var piece = board[y, x];
                 if (piece != null)

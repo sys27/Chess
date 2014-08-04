@@ -15,8 +15,11 @@ namespace Chess.Library
         private List<PieceMove> moves;
 
         public Board()
+            : this(false) { }
+
+        private Board(bool isEmpty)
         {
-            InitializeBoard();
+            InitializeBoard(isEmpty);
 
             moves = new List<PieceMove>();
         }
@@ -27,6 +30,11 @@ namespace Chess.Library
             {
                 return board[y][x];
             }
+            set
+            {
+                value.Coordinates = new BoardPoint(y, x);
+                board[y][x] = value;
+            }
         }
 
         public Piece this[BoardPoint position]
@@ -35,64 +43,76 @@ namespace Chess.Library
             {
                 return this[position.Y, position.X];
             }
+            set
+            {
+                this[position.Y, position.X] = value;
+            }
         }
 
-        private void InitializeBoard()
+        private void InitializeBoard(bool isEmpty)
         {
             board = new Piece[8][];
             for (int i = 0; i < board.Length; i++)
                 board[i] = new Piece[8];
 
-            InitializeWhitePieces();
-            InitializeBlackPieces();
+            if (!isEmpty)
+            {
+                InitializeWhitePieces();
+                InitializeBlackPieces();
+            }
         }
 
         private void InitializeWhitePieces()
         {
             // rooks
-            board[7][0] = new Rook(7, 0, PieceColor.White);
-            board[7][7] = new Rook(7, 7, PieceColor.White);
+            this[7, 0] = new Rook(PieceColor.White);
+            this[7, 7] = new Rook(PieceColor.White);
 
             // knights
-            board[7][1] = new Knight(7, 1, PieceColor.White);
-            board[7][6] = new Knight(7, 6, PieceColor.White);
+            this[7, 1] = new Knight(PieceColor.White);
+            this[7, 6] = new Knight(PieceColor.White);
 
             // bishops
-            board[7][2] = new Bishop(7, 2, PieceColor.White);
-            board[7][5] = new Bishop(7, 5, PieceColor.White);
+            this[7, 2] = new Bishop(PieceColor.White);
+            this[7, 5] = new Bishop(PieceColor.White);
 
             // queen
-            board[7][3] = new Queen(7, 3, PieceColor.White);
+            this[7, 3] = new Queen(PieceColor.White);
             // king
-            board[7][4] = new King(7, 4, PieceColor.White);
+            this[7, 4] = new King(PieceColor.White);
 
             // pawns
             for (int i = 0; i < 8; i++)
-                board[6][i] = new Pawn(6, i, PieceColor.White);
+                this[6, i] = new Pawn(PieceColor.White);
         }
 
         private void InitializeBlackPieces()
         {
             // rooks
-            board[0][0] = new Rook(0, 0, PieceColor.Black);
-            board[0][7] = new Rook(0, 7, PieceColor.Black);
+            this[0, 0] = new Rook(PieceColor.Black);
+            this[0, 7] = new Rook(PieceColor.Black);
 
             // knights
-            board[0][1] = new Knight(0, 1, PieceColor.Black);
-            board[0][6] = new Knight(0, 6, PieceColor.Black);
+            this[0, 1] = new Knight(PieceColor.Black);
+            this[0, 6] = new Knight(PieceColor.Black);
 
             // bishops
-            board[0][2] = new Bishop(0, 2, PieceColor.Black);
-            board[0][5] = new Bishop(0, 5, PieceColor.Black);
+            this[0, 2] = new Bishop(PieceColor.Black);
+            this[0, 5] = new Bishop(PieceColor.Black);
 
             // queen
-            board[0][3] = new Queen(0, 3, PieceColor.Black);
+            this[0, 3] = new Queen(PieceColor.Black);
             // king
-            board[0][4] = new King(0, 4, PieceColor.Black);
+            this[0, 4] = new King(PieceColor.Black);
 
             // pawns
             for (int i = 0; i < 8; i++)
-                board[1][i] = new Pawn(1, i, PieceColor.Black);
+                this[1, i] = new Pawn(PieceColor.Black);
+        }
+
+        public static Board CreateEmpty()
+        {
+            return new Board(true);
         }
 
     }

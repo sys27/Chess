@@ -13,6 +13,9 @@ namespace Chess.Library.Pieces
         protected BoardPoint coordinates;
         protected PieceColor color;
 
+        protected Piece(PieceColor color)
+            : this(new BoardPoint(), color) { }
+
         protected Piece(BoardPoint coordinates, PieceColor color)
         {
             this.coordinates = coordinates;
@@ -36,7 +39,7 @@ namespace Chess.Library.Pieces
 
         protected string ToString(string pieceName)
         {
-            return string.Format("{0}: {1}, {2}", pieceName, coordinates.Y, coordinates.X);
+            return string.Format("{0}: {1}, {2} ({3})", pieceName, coordinates.Y.ToString(), coordinates.X.ToString(), color.ToString());
         }
 
         public bool CanMove(Board board, int y, int x)
@@ -56,6 +59,10 @@ namespace Chess.Library.Pieces
             get
             {
                 return coordinates;
+            }
+            set
+            {
+                coordinates = value;
             }
         }
 

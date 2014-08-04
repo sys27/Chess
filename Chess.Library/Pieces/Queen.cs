@@ -10,6 +10,9 @@ namespace Chess.Library.Pieces
     public class Queen : Piece
     {
 
+        public Queen(PieceColor color)
+            : base(color) { }
+
         public Queen(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 

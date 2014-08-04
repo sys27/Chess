@@ -10,6 +10,9 @@ namespace Chess.Library.Pieces
     public class Pawn : Piece
     {
 
+        public Pawn(PieceColor color)
+            : base(color) { }
+
         public Pawn(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 

@@ -10,6 +10,9 @@ namespace Chess.Library.Pieces
     public class Rook : Piece
     {
 
+        public Rook(PieceColor color)
+            : base(color) { }
+
         public Rook(BoardPoint coordinates, PieceColor color)
             : base(coordinates, color) { }
 
@@ -28,7 +31,7 @@ namespace Chess.Library.Pieces
                 result[i] = new bool[8];
 
             // left
-            for (int i = coordinates.X; i >= 0; i--)
+            for (int i = coordinates.X - 1; i >= 0; i--)
             {
                 var piece = board[coordinates.Y, i];
                 if (piece != null)
@@ -43,7 +46,7 @@ namespace Chess.Library.Pieces
             }
 
             // right
-            for (int i = coordinates.X; i < 8; i++)
+            for (int i = coordinates.X + 1; i < 8; i++)
             {
                 var piece = board[coordinates.Y, i];
                 if (piece != null)
@@ -58,7 +61,7 @@ namespace Chess.Library.Pieces
             }
 
             // up
-            for (int i = coordinates.Y; i > 0; i--)
+            for (int i = coordinates.Y - 1; i > 0; i--)
             {
                 var piece = board[i, coordinates.X];
                 if (piece != null)
@@ -73,7 +76,7 @@ namespace Chess.Library.Pieces
             }
 
             // down
-            for (int i = coordinates.Y; i < 8; i++)
+            for (int i = coordinates.Y + 1; i < 8; i++)
             {
                 var piece = board[i, coordinates.X];
                 if (board[i, coordinates.X] != null)
