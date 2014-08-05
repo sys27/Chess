@@ -10,6 +10,8 @@ namespace Chess.Library.Pieces
     public class King : Piece
     {
 
+        private bool check;
+
         public King(PieceColor color)
             : base(color) { }
 
@@ -27,6 +29,18 @@ namespace Chess.Library.Pieces
         public override bool[][] GetAvailableMoves(Board board)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Check
+        {
+            get
+            {
+                return check;
+            }
+            set
+            {
+                check = value;
+            }
         }
 
     }

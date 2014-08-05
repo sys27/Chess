@@ -30,64 +30,71 @@ namespace Chess.Library.Pieces
             for (int i = 0; i < 8; i++)
                 result[i] = new bool[8];
 
-            // left
-            for (int i = coordinates.X - 1; i >= 0; i--)
+            if (board.GetCheck(color))
             {
-                var piece = board[coordinates.Y, i];
-                if (piece != null)
-                {
-                    if (piece.Color != color && !(piece is King))
-                        result[coordinates.Y][i] = true;
 
-                    break;
-                }
-
-                result[coordinates.Y][i] = true;
             }
-
-            // right
-            for (int i = coordinates.X + 1; i < 8; i++)
+            else
             {
-                var piece = board[coordinates.Y, i];
-                if (piece != null)
+                // left
+                for (int i = coordinates.X - 1; i >= 0; i--)
                 {
-                    if (piece.Color != color && !(piece is King))
-                        result[coordinates.Y][i] = true;
+                    var piece = board[coordinates.Y, i];
+                    if (piece != null)
+                    {
+                        if (piece.Color != color && !(piece is King))
+                            result[coordinates.Y][i] = true;
 
-                    break;
+                        break;
+                    }
+
+                    result[coordinates.Y][i] = true;
                 }
 
-                result[coordinates.Y][i] = true;
-            }
-
-            // up
-            for (int i = coordinates.Y - 1; i > 0; i--)
-            {
-                var piece = board[i, coordinates.X];
-                if (piece != null)
+                // right
+                for (int i = coordinates.X + 1; i < 8; i++)
                 {
-                    if (piece.Color != color && !(piece is King))
-                        result[i][coordinates.X] = true;
+                    var piece = board[coordinates.Y, i];
+                    if (piece != null)
+                    {
+                        if (piece.Color != color && !(piece is King))
+                            result[coordinates.Y][i] = true;
 
-                    break;
+                        break;
+                    }
+
+                    result[coordinates.Y][i] = true;
                 }
 
-                result[i][coordinates.X] = true;
-            }
-
-            // down
-            for (int i = coordinates.Y + 1; i < 8; i++)
-            {
-                var piece = board[i, coordinates.X];
-                if (board[i, coordinates.X] != null)
+                // up
+                for (int i = coordinates.Y - 1; i > 0; i--)
                 {
-                    if (piece.Color != color && !(piece is King))
-                        result[i][coordinates.X] = true;
+                    var piece = board[i, coordinates.X];
+                    if (piece != null)
+                    {
+                        if (piece.Color != color && !(piece is King))
+                            result[i][coordinates.X] = true;
 
-                    break;
+                        break;
+                    }
+
+                    result[i][coordinates.X] = true;
                 }
 
-                result[i][coordinates.X] = true;
+                // down
+                for (int i = coordinates.Y + 1; i < 8; i++)
+                {
+                    var piece = board[i, coordinates.X];
+                    if (board[i, coordinates.X] != null)
+                    {
+                        if (piece.Color != color && !(piece is King))
+                            result[i][coordinates.X] = true;
+
+                        break;
+                    }
+
+                    result[i][coordinates.X] = true;
+                }
             }
 
             return result;

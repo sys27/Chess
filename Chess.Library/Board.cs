@@ -12,6 +12,8 @@ namespace Chess.Library
     {
 
         private Piece[][] board;
+        private King whiteKing;
+        private King blackKing;
         private List<PieceMove> moves;
 
         public Board()
@@ -79,7 +81,8 @@ namespace Chess.Library
             // queen
             this[7, 3] = new Queen(PieceColor.White);
             // king
-            this[7, 4] = new King(PieceColor.White);
+            whiteKing = new King(PieceColor.White);
+            this[7, 4] = whiteKing;
 
             // pawns
             for (int i = 0; i < 8; i++)
@@ -103,7 +106,8 @@ namespace Chess.Library
             // queen
             this[0, 3] = new Queen(PieceColor.Black);
             // king
-            this[0, 4] = new King(PieceColor.Black);
+            blackKing = new King(PieceColor.Black);
+            this[0, 4] = blackKing;
 
             // pawns
             for (int i = 0; i < 8; i++)
@@ -113,6 +117,30 @@ namespace Chess.Library
         public static Board CreateEmpty()
         {
             return new Board(true);
+        }
+
+        public bool GetCheck(PieceColor color)
+        {
+            if (color == PieceColor.White)
+                return whiteKing.Check;
+
+            return blackKing.Check;
+        }
+
+        public bool WhiteKingCheck
+        {
+            get
+            {
+                return whiteKing.Check;
+            }
+        }
+
+        public bool BlackKingCheck
+        {
+            get
+            {
+                return blackKing.Check;
+            }
         }
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess.Library.Pieces
 {
-   
+
     public class Knight : Piece
     {
 
@@ -26,7 +26,93 @@ namespace Chess.Library.Pieces
 
         public override bool[][] GetAvailableMoves(Board board)
         {
-            throw new NotImplementedException();
+            var result = new bool[8][];
+            for (int i = 0; i < 8; i++)
+                result[i] = new bool[8];
+
+            if (board.GetCheck(color))
+            {
+
+            }
+            else
+            {
+                var y = coordinates.Y;
+                var x = coordinates.X;
+
+                if (y + 2 < 8)
+                {
+                    if (x + 1 < 8)
+                    {
+                        var piece = board[y + 2, x + 1];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y + 2][x + 1] = true;
+                    }
+                    if (x - 1 >= 0)
+                    {
+                        var piece = board[y + 2, x - 1];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y + 2][x - 1] = true;
+                    }
+                }
+
+                if (y + 1 < 8)
+                {
+                    if (x + 2 < 8)
+                    {
+                        var piece = board[y + 1, x + 2];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y + 1][x + 2] = true;
+                    }
+                    if (x - 2 >= 0)
+                    {
+                        var piece = board[y + 1, x - 2];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y + 1][x - 2] = true;
+                    }
+                }
+
+                if (y - 1 >= 0)
+                {
+                    if (x + 2 < 8)
+                    {
+                        var piece = board[y - 1, x + 2];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y - 1][x + 2] = true;
+                    }
+                    if (x - 2 >= 0)
+                    {
+                        var piece = board[y - 1, x - 2];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y - 1][x - 2] = true;
+                    }
+                }
+
+                if (y - 2 >= 0)
+                {
+                    if (x + 1 < 8)
+                    {
+                        var piece = board[y - 2, x + 1];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y - 2][x + 1] = true;
+                    }
+                    if (x - 1 >= 0)
+                    {
+                        var piece = board[y - 2, x - 1];
+
+                        if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
+                            result[y - 2][x - 1] = true;
+                    }
+                }
+            }
+
+            return result;
         }
 
     }
