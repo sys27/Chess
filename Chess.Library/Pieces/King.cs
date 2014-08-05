@@ -11,6 +11,7 @@ namespace Chess.Library.Pieces
     {
 
         private bool check;
+        private bool isMoved;
 
         public King(PieceColor color)
             : base(color) { }
@@ -40,6 +41,18 @@ namespace Chess.Library.Pieces
             set
             {
                 check = value;
+            }
+        }
+
+        public bool IsMoved
+        {
+            get
+            {
+                return isMoved;
+            }
+            set
+            {
+                isMoved = value;
             }
         }
 

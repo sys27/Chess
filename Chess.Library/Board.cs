@@ -122,9 +122,9 @@ namespace Chess.Library
         public bool GetCheck(PieceColor color)
         {
             if (color == PieceColor.White)
-                return whiteKing.Check;
+                return whiteKing == null ? false : whiteKing.Check;
 
-            return blackKing.Check;
+            return blackKing == null ? false : blackKing.Check;
         }
 
         public bool WhiteKingCheck
