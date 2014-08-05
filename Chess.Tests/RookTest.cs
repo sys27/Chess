@@ -76,6 +76,64 @@ namespace Chess.Tests
             Assert.IsFalse(moves[4][7]);
         }
 
+        [TestMethod]
+        public void GetAvailableMoves_UpMove()
+        {
+            var rook = new Rook(PieceColor.White);
+            board[4, 4] = rook;
+            board[1, 4] = new Pawn(PieceColor.White);
+
+            var moves = rook.GetAvailableMoves(board);
+
+            Assert.IsTrue(moves[3][4]);
+            Assert.IsTrue(moves[2][4]);
+            Assert.IsFalse(moves[1][4]);
+            Assert.IsFalse(moves[0][4]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_UpKill()
+        {
+            var rook = new Rook(PieceColor.White);
+            board[4, 4] = rook;
+            board[1, 4] = new Pawn(PieceColor.Black);
+
+            var moves = rook.GetAvailableMoves(board);
+
+            Assert.IsTrue(moves[3][4]);
+            Assert.IsTrue(moves[2][4]);
+            Assert.IsTrue(moves[1][4]);
+            Assert.IsFalse(moves[0][4]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_DownMove()
+        {
+            var rook = new Rook(PieceColor.White);
+            board[4, 4] = rook;
+            board[6, 4] = new Pawn(PieceColor.White);
+
+            var moves = rook.GetAvailableMoves(board);
+
+            Assert.IsTrue(moves[5][4]);
+            Assert.IsFalse(moves[6][4]);
+            Assert.IsFalse(moves[7][4]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_DownKill()
+        {
+            var rook = new Rook(PieceColor.White);
+            board[4, 4] = rook;
+            board[6, 4] = new Pawn(PieceColor.Black);
+
+            var moves = rook.GetAvailableMoves(board);
+
+            Assert.IsTrue(moves[5][4]);
+            Assert.IsTrue(moves[6][4]);
+            Assert.IsFalse(moves[7][4]);
+        }
+
     }
 
 }
