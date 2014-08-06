@@ -24,13 +24,13 @@ namespace Chess.Library.Pieces
             return base.ToString("Knight");
         }
 
-        public override bool[][] GetAvailableMoves(Board board)
+        public override bool[][] GetAvailableMoves(Game game)
         {
             var result = new bool[8][];
             for (int i = 0; i < 8; i++)
                 result[i] = new bool[8];
 
-            if (!board.GetCheck(color))
+            if (!game.GetCheck(color))
             {
                 var y = coordinates.Y;
                 var x = coordinates.X;
@@ -39,14 +39,14 @@ namespace Chess.Library.Pieces
                 {
                     if (x + 1 < 8)
                     {
-                        var piece = board[y + 2, x + 1];
+                        var piece = game.GameBoard[y + 2, x + 1];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y + 2][x + 1] = true;
                     }
                     if (x - 1 >= 0)
                     {
-                        var piece = board[y + 2, x - 1];
+                        var piece = game.GameBoard[y + 2, x - 1];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y + 2][x - 1] = true;
@@ -57,14 +57,14 @@ namespace Chess.Library.Pieces
                 {
                     if (x + 2 < 8)
                     {
-                        var piece = board[y + 1, x + 2];
+                        var piece = game.GameBoard[y + 1, x + 2];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y + 1][x + 2] = true;
                     }
                     if (x - 2 >= 0)
                     {
-                        var piece = board[y + 1, x - 2];
+                        var piece = game.GameBoard[y + 1, x - 2];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y + 1][x - 2] = true;
@@ -75,14 +75,14 @@ namespace Chess.Library.Pieces
                 {
                     if (x + 2 < 8)
                     {
-                        var piece = board[y - 1, x + 2];
+                        var piece = game.GameBoard[y - 1, x + 2];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y - 1][x + 2] = true;
                     }
                     if (x - 2 >= 0)
                     {
-                        var piece = board[y - 1, x - 2];
+                        var piece = game.GameBoard[y - 1, x - 2];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y - 1][x - 2] = true;
@@ -93,14 +93,14 @@ namespace Chess.Library.Pieces
                 {
                     if (x + 1 < 8)
                     {
-                        var piece = board[y - 2, x + 1];
+                        var piece = game.GameBoard[y - 2, x + 1];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y - 2][x + 1] = true;
                     }
                     if (x - 1 >= 0)
                     {
-                        var piece = board[y - 2, x - 1];
+                        var piece = game.GameBoard[y - 2, x - 1];
 
                         if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
                             result[y - 2][x - 1] = true;

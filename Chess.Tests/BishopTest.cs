@@ -5,27 +5,27 @@ using Chess.Library.Pieces;
 
 namespace Chess.Tests
 {
-
+    
     [TestClass]
     public class BishopTest
     {
 
-        private Board board;
+        private Game game;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            board = Board.CreateEmpty();
+            game = new Game(Board.CreateEmpty());
         }
 
         [TestMethod]
         public void GetAvailableMoves_UpLeftMove()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[1, 2] = new Pawn(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[1, 2] = new Pawn(PieceColor.White);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[2][3]);
             Assert.IsFalse(moves[1][2]);
@@ -36,10 +36,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_UpLeftKill()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[1, 2] = new Pawn(PieceColor.Black);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[1, 2] = new Pawn(PieceColor.Black);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[2][3]);
             Assert.IsTrue(moves[1][2]);
@@ -50,10 +50,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_UpRightMove()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[1, 6] = new Pawn(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[1, 6] = new Pawn(PieceColor.White);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[2][5]);
             Assert.IsFalse(moves[1][6]);
@@ -64,10 +64,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_UpRightKill()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[1, 6] = new Pawn(PieceColor.Black);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[1, 6] = new Pawn(PieceColor.Black);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[2][5]);
             Assert.IsTrue(moves[1][6]);
@@ -78,10 +78,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_DownLeftMove()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[6, 1] = new Pawn(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[6, 1] = new Pawn(PieceColor.White);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[4][3]);
             Assert.IsTrue(moves[5][2]);
@@ -93,10 +93,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_DownLeftKill()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[6, 1] = new Pawn(PieceColor.Black);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[6, 1] = new Pawn(PieceColor.Black);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[4][3]);
             Assert.IsTrue(moves[5][2]);
@@ -108,10 +108,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_DownRightMove()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[5, 6] = new Pawn(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[5, 6] = new Pawn(PieceColor.White);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[4][5]);
             Assert.IsFalse(moves[5][6]);
@@ -122,10 +122,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_DownRightKill()
         {
             var bishop = new Bishop(PieceColor.White);
-            board[3, 4] = bishop;
-            board[5, 6] = new Pawn(PieceColor.Black);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[5, 6] = new Pawn(PieceColor.Black);
 
-            var moves = bishop.GetAvailableMoves(board);
+            var moves = bishop.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[4][5]);
             Assert.IsTrue(moves[5][6]);

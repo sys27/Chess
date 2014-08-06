@@ -24,18 +24,18 @@ namespace Chess.Library.Pieces
             return base.ToString("Queen");
         }
 
-        public override bool[][] GetAvailableMoves(Board board)
+        public override bool[][] GetAvailableMoves(Game game)
         {
             var result = new bool[8][];
             for (int i = 0; i < 8; i++)
                 result[i] = new bool[8];
 
-            if (!board.GetCheck(color))
+            if (!game.GetCheck(color))
             {
                 // left
                 for (int i = coordinates.X - 1; i >= 0; i--)
                 {
-                    var piece = board[coordinates.Y, i];
+                    var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -50,7 +50,7 @@ namespace Chess.Library.Pieces
                 // right
                 for (int i = coordinates.X + 1; i < 8; i++)
                 {
-                    var piece = board[coordinates.Y, i];
+                    var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -65,7 +65,7 @@ namespace Chess.Library.Pieces
                 // up
                 for (int i = coordinates.Y - 1; i > 0; i--)
                 {
-                    var piece = board[i, coordinates.X];
+                    var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -80,8 +80,8 @@ namespace Chess.Library.Pieces
                 // down
                 for (int i = coordinates.Y + 1; i < 8; i++)
                 {
-                    var piece = board[i, coordinates.X];
-                    if (board[i, coordinates.X] != null)
+                    var piece = game.GameBoard[i, coordinates.X];
+                    if (game.GameBoard[i, coordinates.X] != null)
                     {
                         if (piece.Color != color && !(piece is King))
                             result[i][coordinates.X] = true;
@@ -95,7 +95,7 @@ namespace Chess.Library.Pieces
                 // up-left
                 for (int x = coordinates.X - 1, y = coordinates.Y - 1; x >= 0 && y >= 0; x--, y--)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -110,7 +110,7 @@ namespace Chess.Library.Pieces
                 // up-right
                 for (int x = coordinates.X + 1, y = coordinates.Y - 1; x < 8 && y >= 0; x++, y--)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -125,7 +125,7 @@ namespace Chess.Library.Pieces
                 // down-left
                 for (int x = coordinates.X - 1, y = coordinates.Y + 1; x >= 0 && y < 8; x--, y++)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -140,7 +140,7 @@ namespace Chess.Library.Pieces
                 // down-right
                 for (int x = coordinates.X + 1, y = coordinates.Y + 1; x < 8 && y < 8; x++, y++)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))

@@ -10,21 +10,21 @@ namespace Chess.Tests
     public class KnightTest
     {
 
-        private Board board;
+        private Game game;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            board = Board.CreateEmpty();
+            game = new Game(Board.CreateEmpty());
         }
 
         [TestMethod]
         public void GetAvailableMoves_All()
         {
             var knight = new Knight(PieceColor.White);
-            board[4, 4] = knight;
+            game.GameBoard[4, 4] = knight;
 
-            var moves = knight.GetAvailableMoves(board);
+            var moves = knight.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[6][3]);
             Assert.IsTrue(moves[6][5]);
@@ -43,10 +43,10 @@ namespace Chess.Tests
         public void GetAvailableMoves()
         {
             var knight = new Knight(PieceColor.White);
-            board[4, 4] = knight;
-            board[6, 3] = new Pawn(PieceColor.White);
+            game.GameBoard[4, 4] = knight;
+            game.GameBoard[6, 3] = new Pawn(PieceColor.White);
 
-            var moves = knight.GetAvailableMoves(board);
+            var moves = knight.GetAvailableMoves(game);
 
             Assert.IsFalse(moves[6][3]);
             Assert.IsTrue(moves[6][5]);
@@ -65,10 +65,10 @@ namespace Chess.Tests
         public void GetAvailableMoves_Kill()
         {
             var knight = new Knight(PieceColor.White);
-            board[4, 4] = knight;
-            board[6, 3] = new Pawn(PieceColor.Black);
+            game.GameBoard[4, 4] = knight;
+            game.GameBoard[6, 3] = new Pawn(PieceColor.Black);
 
-            var moves = knight.GetAvailableMoves(board);
+            var moves = knight.GetAvailableMoves(game);
 
             Assert.IsTrue(moves[6][3]);
             Assert.IsTrue(moves[6][5]);

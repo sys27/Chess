@@ -26,7 +26,7 @@ namespace Chess.Library.Pieces
             return base.ToString("Pawn");
         }
 
-        public override bool[][] GetAvailableMoves(Board board)
+        public override bool[][] GetAvailableMoves(Game game)
         {
             var result = new bool[8][];
             for (int i = 0; i < 8; i++)
@@ -39,23 +39,23 @@ namespace Chess.Library.Pieces
 
             if (color == PieceColor.White)
             {
-                if (!board.WhiteKingCheck)
+                if (!game.WhiteKingCheck)
                 {
-                    if (!isMoved && y - 2 >= 0 && board[y - 2, x] == null)
+                    if (!isMoved && y - 2 >= 0 && game.GameBoard[y - 2, x] == null)
                         result[y - 2][x] = true;
 
-                    if (y - 1 >= 0 && board[y - 1, x] == null)
+                    if (y - 1 >= 0 && game.GameBoard[y - 1, x] == null)
                         result[y - 1][x] = true;
 
                     if (y - 1 >= 0 && x - 1 >= 0)
                     {
-                        var piece = board[y - 1, x - 1];
+                        var piece = game.GameBoard[y - 1, x - 1];
                         if (piece != null && piece.Color != color && !(piece is King))
                             result[y - 1][x - 1] = true;
                     }
                     if (y - 1 >= 0 && x + 1 >= 0)
                     {
-                        var piece = board[y - 1, x + 1];
+                        var piece = game.GameBoard[y - 1, x + 1];
                         if (piece != null && piece.Color != color && !(piece is King))
                             result[y - 1][x + 1] = true;
                     }
@@ -67,23 +67,23 @@ namespace Chess.Library.Pieces
             }
             else
             {
-                if (!board.BlackKingCheck)
+                if (!game.BlackKingCheck)
                 {
-                    if (!isMoved && y + 2 >= 0 && board[y + 2, x] == null)
+                    if (!isMoved && y + 2 >= 0 && game.GameBoard[y + 2, x] == null)
                         result[y + 2][x] = true;
 
-                    if (y + 1 >= 0 && board[y + 1, x] == null)
+                    if (y + 1 >= 0 && game.GameBoard[y + 1, x] == null)
                         result[y + 1][x] = true;
 
                     if (y + 1 >= 0 && x - 1 >= 0)
                     {
-                        var piece = board[y + 1, x - 1];
+                        var piece = game.GameBoard[y + 1, x - 1];
                         if (piece != null && piece.Color != color && !(piece is King))
                             result[y + 1][x - 1] = true;
                     }
                     if (y + 1 >= 0 && x + 1 >= 0)
                     {
-                        var piece = board[y + 1, x + 1];
+                        var piece = game.GameBoard[y + 1, x + 1];
                         if (piece != null && piece.Color != color && !(piece is King))
                             result[y + 1][x + 1] = true;
                     }

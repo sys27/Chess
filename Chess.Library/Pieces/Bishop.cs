@@ -24,18 +24,18 @@ namespace Chess.Library.Pieces
             return base.ToString("Bishop");
         }
 
-        public override bool[][] GetAvailableMoves(Board board)
+        public override bool[][] GetAvailableMoves(Game game)
         {
             var result = new bool[8][];
             for (int i = 0; i < 8; i++)
                 result[i] = new bool[8];
 
-            if (!board.GetCheck(color))
+            if (!game.GetCheck(color))
             {
                 // up-left
                 for (int x = coordinates.X - 1, y = coordinates.Y - 1; x >= 0 && y >= 0; x--, y--)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -50,7 +50,7 @@ namespace Chess.Library.Pieces
                 // up-right
                 for (int x = coordinates.X + 1, y = coordinates.Y - 1; x < 8 && y >= 0; x++, y--)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -65,7 +65,7 @@ namespace Chess.Library.Pieces
                 // down-left
                 for (int x = coordinates.X - 1, y = coordinates.Y + 1; x >= 0 && y < 8; x--, y++)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
@@ -80,7 +80,7 @@ namespace Chess.Library.Pieces
                 // down-right
                 for (int x = coordinates.X + 1, y = coordinates.Y + 1; x < 8 && y < 8; x++, y++)
                 {
-                    var piece = board[y, x];
+                    var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
                         if (piece.Color != color && !(piece is King))
