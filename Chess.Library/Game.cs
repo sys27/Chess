@@ -17,11 +17,6 @@ namespace Chess.Library
             board = new Board();
         }
 
-        public void Turn(BoardPoint from, BoardPoint to)
-        {
-
-        }
-
     }
 
 }

@@ -39,7 +39,7 @@ namespace Chess.Library.Pieces
 
             if (color == PieceColor.White)
             {
-                if (!board.GetCheck(color))
+                if (!board.WhiteKingCheck)
                 {
                     if (!isMoved && y - 2 >= 0 && board[y - 2, x] == null)
                         result[y - 2][x] = true;
@@ -67,7 +67,7 @@ namespace Chess.Library.Pieces
             }
             else
             {
-                if (!board.GetCheck(color))
+                if (!board.BlackKingCheck)
                 {
                     if (!isMoved && y + 2 >= 0 && board[y + 2, x] == null)
                         result[y + 2][x] = true;
