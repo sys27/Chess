@@ -39,11 +39,7 @@ namespace Chess.Library.Pieces
 
             if (color == PieceColor.White)
             {
-                if (board.GetCheck(color))
-                {
-
-                }
-                else
+                if (!board.GetCheck(color))
                 {
                     if (!isMoved && y - 2 >= 0 && board[y - 2, x] == null)
                         result[y - 2][x] = true;
@@ -64,14 +60,14 @@ namespace Chess.Library.Pieces
                             result[y - 1][x + 1] = true;
                     }
                 }
+                else
+                {
+                    
+                }
             }
             else
             {
-                if (board.GetCheck(color))
-                {
-
-                }
-                else
+                if (!board.GetCheck(color))
                 {
                     if (!isMoved && y + 2 >= 0 && board[y + 2, x] == null)
                         result[y + 2][x] = true;
@@ -91,6 +87,10 @@ namespace Chess.Library.Pieces
                         if (piece != null && piece.Color != color && !(piece is King))
                             result[y + 1][x + 1] = true;
                     }
+                }
+                else
+                {
+                    
                 }
             }
 

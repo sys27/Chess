@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Chess.Library.Pieces
 {
-    
+
     public class King : Piece
     {
 
@@ -29,7 +29,22 @@ namespace Chess.Library.Pieces
 
         public override bool[][] GetAvailableMoves(Board board)
         {
-            throw new NotImplementedException();
+            var result = new bool[8][];
+            for (int i = 0; i < 8; i++)
+                result[i] = new bool[8];
+
+            // todo: Castling
+
+            if (!check)
+            {
+
+            }
+            else
+            {
+
+            }
+
+            return result;
         }
 
         public bool Check

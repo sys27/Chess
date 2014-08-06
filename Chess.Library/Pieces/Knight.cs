@@ -30,11 +30,7 @@ namespace Chess.Library.Pieces
             for (int i = 0; i < 8; i++)
                 result[i] = new bool[8];
 
-            if (board.GetCheck(color))
-            {
-
-            }
-            else
+            if (!board.GetCheck(color))
             {
                 var y = coordinates.Y;
                 var x = coordinates.X;
@@ -110,6 +106,10 @@ namespace Chess.Library.Pieces
                             result[y - 2][x - 1] = true;
                     }
                 }
+            }
+            else
+            {
+                
             }
 
             return result;
