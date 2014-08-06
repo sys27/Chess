@@ -24,6 +24,12 @@ namespace Chess.Library.Pieces
             return base.ToString("Knight");
         }
 
+        public override bool CanMove(Game game, int y, int x)
+        {
+            // todo: reimplement
+            return GetAvailableMoves(game)[y][x];
+        }
+
         public override bool[][] GetAvailableMoves(Game game)
         {
             var result = new bool[8][];

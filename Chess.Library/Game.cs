@@ -13,8 +13,6 @@ namespace Chess.Library
 
         private Board board;
 
-        private King whiteKing;
-        private King blackKing;
         private List<PieceMove> moves;
 
         public Game()
@@ -23,6 +21,7 @@ namespace Chess.Library
         public Game(Board board)
         {
             this.board = board;
+            this.moves = new List<PieceMove>();
         }
 
         public bool GetCheck(PieceColor color)
@@ -37,7 +36,7 @@ namespace Chess.Library
         {
             get
             {
-                return whiteKing == null ? false : whiteKing.Check;
+                return board.WhiteKing == null ? false : board.WhiteKing.Check;
             }
         }
 
@@ -45,7 +44,7 @@ namespace Chess.Library
         {
             get
             {
-                return blackKing == null ? false : blackKing.Check;
+                return board.BlackKing == null ? false : board.BlackKing.Check;
             }
         }
 

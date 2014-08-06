@@ -42,10 +42,7 @@ namespace Chess.Library.Pieces
             return string.Format("{0}: {1}, {2} ({3})", pieceName, coordinates.Y.ToString(), coordinates.X.ToString(), color.ToString());
         }
 
-        public bool CanMove(Game game, int y, int x)
-        {
-            return GetAvailableMoves(game)[y][x];
-        }
+        public abstract bool CanMove(Game game, int y, int x);
 
         public bool CanMove(Game game, BoardPoint to)
         {

@@ -12,6 +12,8 @@ namespace Chess.Library
     {
 
         private Piece[][] board;
+        private King whiteKing;
+        private King blackKing;
        
         public Board()
             : this(false) { }
@@ -76,7 +78,8 @@ namespace Chess.Library
             // queen
             this[7, 3] = new Queen(PieceColor.White);
             // king
-            this[7, 4] = new King(PieceColor.White);
+            whiteKing = new King(PieceColor.White);
+            this[7, 4] = whiteKing;
 
             // pawns
             for (int i = 0; i < 8; i++)
@@ -100,16 +103,59 @@ namespace Chess.Library
             // queen
             this[0, 3] = new Queen(PieceColor.Black);
             // king
-            this[0, 4] = new King(PieceColor.Black);
+            blackKing = new King(PieceColor.Black);
+            this[0, 4] = blackKing;
 
             // pawns
             for (int i = 0; i < 8; i++)
                 this[1, i] = new Pawn(PieceColor.Black);
         }
 
+        public void Move(BoardPoint from, BoardPoint to)
+        {
+            if (this[to] != null)
+                // todo: ...
+                throw new Exception();
+
+            this[to] = this[from];
+            this[from] = null;
+        }
+
+        public Piece Kill(BoardPoint from, BoardPoint to)
+        {
+            var piece = this[to];
+
+            this[to] = this[from];
+            this[from] = null;
+
+            return piece;
+        }
+
+        public void UndoKill(BoardPoint from, BoardPoint to, Piece piece)
+        {
+            this[to] = this[from];
+            this[from] = piece;
+        }
+
         public static Board CreateEmpty()
         {
             return new Board(true);
+        }
+
+        internal King WhiteKing
+        {
+            get
+            {
+                return whiteKing;
+            }
+        }
+
+        internal King BlackKing
+        {
+            get
+            {
+                return blackKing;
+            }
         }
         
     }
