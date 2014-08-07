@@ -48,7 +48,7 @@ namespace Chess.Tests
 
             var moves = knight.GetAvailableMoves(game);
 
-            Assert.AreEqual(MoveType.Move, moves[6][3]);
+            Assert.AreEqual(MoveType.Protect, moves[6][3]);
             Assert.AreEqual(MoveType.Move, moves[6][5]);
 
             Assert.AreEqual(MoveType.Move, moves[5][2]);
@@ -70,7 +70,7 @@ namespace Chess.Tests
 
             var moves = knight.GetAvailableMoves(game);
 
-            Assert.AreEqual(MoveType.Move, moves[6][3]);
+            Assert.AreEqual(MoveType.Kill, moves[6][3]);
             Assert.AreEqual(MoveType.Move, moves[6][5]);
 
             Assert.AreEqual(MoveType.Move, moves[5][2]);

@@ -36,87 +36,207 @@ namespace Chess.Library.Pieces
             for (int i = 0; i < 8; i++)
                 result[i] = new MoveType[8];
 
-            //if (!game.GetCheck(color))
-            //{
-            //    var y = coordinates.Y;
-            //    var x = coordinates.X;
+            if (!game.GetCheck(color))
+            {
+                var y = coordinates.Y;
+                var x = coordinates.X;
 
-            //    if (y + 2 < 8)
-            //    {
-            //        if (x + 1 < 8)
-            //        {
-            //            var piece = game.GameBoard[y + 2, x + 1];
+                if (y + 2 < 8)
+                {
+                    if (x + 1 < 8)
+                    {
+                        var piece = game.GameBoard[y + 2, x + 1];
+                        if (piece == null)
+                        {
+                            result[y + 2][x + 1] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y + 2][x + 1] = MoveType.Kill;
+                                else
+                                    result[y + 2][x + 1] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y + 2][x + 1] = MoveType.Move;
+                            }
+                        }
+                    }
+                    if (x - 1 >= 0)
+                    {
+                        var piece = game.GameBoard[y + 2, x - 1];
+                        if (piece == null)
+                        {
+                            result[y + 2][x - 1] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y + 2][x - 1] = MoveType.Kill;
+                                else
+                                    result[y + 2][x - 1] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y + 2][x - 1] = MoveType.Move;
+                            }
+                        }
+                    }
+                }
 
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y + 2][x + 1] = true;
-            //        }
-            //        if (x - 1 >= 0)
-            //        {
-            //            var piece = game.GameBoard[y + 2, x - 1];
+                if (y + 1 < 8)
+                {
+                    if (x + 2 < 8)
+                    {
+                        var piece = game.GameBoard[y + 1, x + 2];
+                        if (piece == null)
+                        {
+                            result[y + 1][x + 2] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y + 1][x + 2] = MoveType.Kill;
+                                else
+                                    result[y + 1][x + 2] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y + 1][x + 2] = MoveType.Move;
+                            }
+                        }
+                    }
+                    if (x - 2 >= 0)
+                    {
+                        var piece = game.GameBoard[y + 1, x - 2];
+                        if (piece == null)
+                        {
+                            result[y + 1][x - 2] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y + 1][x - 2] = MoveType.Kill;
+                                else
+                                    result[y + 1][x - 2] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y + 1][x - 2] = MoveType.Move;
+                            }
+                        }
+                    }
+                }
 
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y + 2][x - 1] = true;
-            //        }
-            //    }
+                if (y - 1 >= 0)
+                {
+                    if (x + 2 < 8)
+                    {
+                        var piece = game.GameBoard[y - 1, x + 2];
+                        if (piece == null)
+                        {
+                            result[y - 1][x + 2] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y - 1][x + 2] = MoveType.Kill;
+                                else
+                                    result[y - 1][x + 2] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y - 1][x + 2] = MoveType.Move;
+                            }
+                        }
+                    }
+                    if (x - 2 >= 0)
+                    {
+                        var piece = game.GameBoard[y - 1, x - 2];
+                        if (piece == null)
+                        {
+                            result[y - 1][x - 2] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y - 1][x - 2] = MoveType.Kill;
+                                else
+                                    result[y - 1][x - 2] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y - 1][x - 2] = MoveType.Move;
+                            }
+                        }
+                    }
+                }
 
-            //    if (y + 1 < 8)
-            //    {
-            //        if (x + 2 < 8)
-            //        {
-            //            var piece = game.GameBoard[y + 1, x + 2];
+                if (y - 2 >= 0)
+                {
+                    if (x + 1 < 8)
+                    {
+                        var piece = game.GameBoard[y - 2, x + 1];
+                        if (piece == null)
+                        {
+                            result[y - 2][x + 1] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y - 2][x + 1] = MoveType.Kill;
+                                else
+                                    result[y - 2][x + 1] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y - 2][x + 1] = MoveType.Move;
+                            }
+                        }
+                    }
+                    if (x - 1 >= 0)
+                    {
+                        var piece = game.GameBoard[y - 2, x - 1];
+                        if (piece == null)
+                        {
+                            result[y - 2][x - 1] = MoveType.Move;
+                        }
+                        else
+                        {
+                            if (!(piece is King))
+                            {
+                                if (piece.Color != color)
+                                    result[y - 2][x - 1] = MoveType.Kill;
+                                else
+                                    result[y - 2][x - 1] = MoveType.Protect;
+                            }
+                            else
+                            {
+                                result[y - 2][x - 1] = MoveType.Move;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
 
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y + 1][x + 2] = true;
-            //        }
-            //        if (x - 2 >= 0)
-            //        {
-            //            var piece = game.GameBoard[y + 1, x - 2];
-
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y + 1][x - 2] = true;
-            //        }
-            //    }
-
-            //    if (y - 1 >= 0)
-            //    {
-            //        if (x + 2 < 8)
-            //        {
-            //            var piece = game.GameBoard[y - 1, x + 2];
-
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y - 1][x + 2] = true;
-            //        }
-            //        if (x - 2 >= 0)
-            //        {
-            //            var piece = game.GameBoard[y - 1, x - 2];
-
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y - 1][x - 2] = true;
-            //        }
-            //    }
-
-            //    if (y - 2 >= 0)
-            //    {
-            //        if (x + 1 < 8)
-            //        {
-            //            var piece = game.GameBoard[y - 2, x + 1];
-
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y - 2][x + 1] = true;
-            //        }
-            //        if (x - 1 >= 0)
-            //        {
-            //            var piece = game.GameBoard[y - 2, x - 1];
-
-            //            if (piece == null || (piece != null && piece.Color != color && !(piece is King)))
-            //                result[y - 2][x - 1] = true;
-            //        }
-            //    }
-            //}
-            //else
-            //{
-                
-            //}
+            }
 
             return result;
         }
