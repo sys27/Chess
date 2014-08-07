@@ -46,13 +46,15 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (!(piece is King))
+                        if (piece.Color != color)
                         {
-                            if (piece.Color != color)
-                                result[coordinates.Y][i] = MoveType.Kill;
+                            if (piece is King)
+                                result[coordinates.Y][i] = MoveType.Check;
                             else
-                                result[coordinates.Y][i] = MoveType.Protect;
+                                result[coordinates.Y][i] = MoveType.Kill;
                         }
+                        else
+                            result[coordinates.Y][i] = MoveType.Protect;
 
                         break;
                     }
@@ -66,13 +68,15 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (!(piece is King))
+                        if (piece.Color != color)
                         {
-                            if (piece.Color != color)
-                                result[coordinates.Y][i] = MoveType.Kill;
+                            if (piece is King)
+                                result[coordinates.Y][i] = MoveType.Check;
                             else
-                                result[coordinates.Y][i] = MoveType.Protect;
+                                result[coordinates.Y][i] = MoveType.Kill;
                         }
+                        else
+                            result[coordinates.Y][i] = MoveType.Protect;
 
                         break;
                     }
@@ -86,13 +90,15 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
-                        if (!(piece is King))
+                        if (piece.Color != color)
                         {
-                            if (piece.Color != color)
-                                result[i][coordinates.X] = MoveType.Kill;
+                            if (piece is King)
+                                result[i][coordinates.X] = MoveType.Check;
                             else
-                                result[i][coordinates.X] = MoveType.Protect;
+                                result[i][coordinates.X] = MoveType.Kill;
                         }
+                        else
+                            result[i][coordinates.X] = MoveType.Protect;
 
                         break;
                     }
@@ -106,13 +112,15 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
-                        if (!(piece is King))
+                        if (piece.Color != color)
                         {
-                            if (piece.Color != color)
-                                result[i][coordinates.X] = MoveType.Kill;
+                            if (piece is King)
+                                result[i][coordinates.X] = MoveType.Check;
                             else
-                                result[i][coordinates.X] = MoveType.Protect;
+                                result[i][coordinates.X] = MoveType.Kill;
                         }
+                        else
+                            result[i][coordinates.X] = MoveType.Protect;
 
                         break;
                     }

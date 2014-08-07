@@ -13,7 +13,8 @@ namespace Chess.Library
         None,
         Move,
         Protect,
-        Kill
+        Kill,
+        Check
 
     }
 

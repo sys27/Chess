@@ -47,6 +47,20 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void GetAvailableMoves_UpLeftCheck()
+        {
+            var bishop = new Bishop(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[1, 2] = new King(PieceColor.Black);
+
+            var moves = bishop.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.Move, moves[2][3]);
+            Assert.AreEqual(MoveType.Check, moves[1][2]);
+            Assert.AreEqual(MoveType.None, moves[0][1]);
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_UpRightMove()
         {
             var bishop = new Bishop(PieceColor.White);
@@ -71,6 +85,20 @@ namespace Chess.Tests
 
             Assert.AreEqual(MoveType.Move, moves[2][5]);
             Assert.AreEqual(MoveType.Kill, moves[1][6]);
+            Assert.AreEqual(MoveType.None, moves[0][7]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_UpRightCheck()
+        {
+            var bishop = new Bishop(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[1, 6] = new King(PieceColor.Black);
+
+            var moves = bishop.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.Move, moves[2][5]);
+            Assert.AreEqual(MoveType.Check, moves[1][6]);
             Assert.AreEqual(MoveType.None, moves[0][7]);
         }
 
@@ -105,6 +133,21 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void GetAvailableMoves_DownLeftCheck()
+        {
+            var bishop = new Bishop(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[6, 1] = new King(PieceColor.Black);
+
+            var moves = bishop.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.Move, moves[4][3]);
+            Assert.AreEqual(MoveType.Move, moves[5][2]);
+            Assert.AreEqual(MoveType.Check, moves[6][1]);
+            Assert.AreEqual(MoveType.None, moves[7][0]);
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_DownRightMove()
         {
             var bishop = new Bishop(PieceColor.White);
@@ -129,6 +172,20 @@ namespace Chess.Tests
 
             Assert.AreEqual(MoveType.Move, moves[4][5]);
             Assert.AreEqual(MoveType.Kill, moves[5][6]);
+            Assert.AreEqual(MoveType.None, moves[6][7]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_DownRightCheck()
+        {
+            var bishop = new Bishop(PieceColor.White);
+            game.GameBoard[3, 4] = bishop;
+            game.GameBoard[5, 6] = new King(PieceColor.Black);
+
+            var moves = bishop.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.Move, moves[4][5]);
+            Assert.AreEqual(MoveType.Check, moves[5][6]);
             Assert.AreEqual(MoveType.None, moves[6][7]);
         }
 
