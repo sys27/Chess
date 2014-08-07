@@ -50,19 +50,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y + 2][x + 1] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y + 2][x + 1] = MoveType.Check;
+                            else
+                                result[y + 2][x + 1] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y + 2][x + 1] = MoveType.Kill;
-                                else
-                                    result[y + 2][x + 1] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y + 2][x + 1] = MoveType.Move;
-                            }
+                            result[y + 2][x + 1] = MoveType.Protect;
                         }
                     }
                     if (x - 1 >= 0)
@@ -72,19 +69,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y + 2][x - 1] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y + 2][x - 1] = MoveType.Check;
+                            else
+                                result[y + 2][x - 1] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y + 2][x - 1] = MoveType.Kill;
-                                else
-                                    result[y + 2][x - 1] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y + 2][x - 1] = MoveType.Move;
-                            }
+                            result[y + 2][x - 1] = MoveType.Protect;
                         }
                     }
                 }
@@ -98,19 +92,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y + 1][x + 2] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y + 1][x + 2] = MoveType.Kill;
+                            else
+                                result[y + 1][x + 2] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y + 1][x + 2] = MoveType.Kill;
-                                else
-                                    result[y + 1][x + 2] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y + 1][x + 2] = MoveType.Move;
-                            }
+                            result[y + 1][x + 2] = MoveType.Protect;
                         }
                     }
                     if (x - 2 >= 0)
@@ -120,19 +111,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y + 1][x - 2] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y + 1][x - 2] = MoveType.Check;
+                            else
+                                result[y + 1][x - 2] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y + 1][x - 2] = MoveType.Kill;
-                                else
-                                    result[y + 1][x - 2] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y + 1][x - 2] = MoveType.Move;
-                            }
+                            result[y + 1][x - 2] = MoveType.Protect;
                         }
                     }
                 }
@@ -146,19 +134,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y - 1][x + 2] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y - 1][x + 2] = MoveType.Check;
+                            else
+                                result[y - 1][x + 2] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y - 1][x + 2] = MoveType.Kill;
-                                else
-                                    result[y - 1][x + 2] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y - 1][x + 2] = MoveType.Move;
-                            }
+                            result[y - 1][x + 2] = MoveType.Protect;
                         }
                     }
                     if (x - 2 >= 0)
@@ -168,19 +153,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y - 1][x - 2] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y - 1][x - 2] = MoveType.Check;
+                            else
+                                result[y - 1][x - 2] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y - 1][x - 2] = MoveType.Kill;
-                                else
-                                    result[y - 1][x - 2] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y - 1][x - 2] = MoveType.Move;
-                            }
+                            result[y - 1][x - 2] = MoveType.Protect;
                         }
                     }
                 }
@@ -194,19 +176,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y - 2][x + 1] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y - 2][x + 1] = MoveType.Check;
+                            else
+                                result[y - 2][x + 1] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y - 2][x + 1] = MoveType.Kill;
-                                else
-                                    result[y - 2][x + 1] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y - 2][x + 1] = MoveType.Move;
-                            }
+                            result[y - 2][x + 1] = MoveType.Protect;
                         }
                     }
                     if (x - 1 >= 0)
@@ -216,19 +195,16 @@ namespace Chess.Library.Pieces
                         {
                             result[y - 2][x - 1] = MoveType.Move;
                         }
+                        else if (piece.Color != color)
+                        {
+                            if (piece is King)
+                                result[y - 2][x - 1] = MoveType.Check;
+                            else
+                                result[y - 2][x - 1] = MoveType.Kill;
+                        }
                         else
                         {
-                            if (!(piece is King))
-                            {
-                                if (piece.Color != color)
-                                    result[y - 2][x - 1] = MoveType.Kill;
-                                else
-                                    result[y - 2][x - 1] = MoveType.Protect;
-                            }
-                            else
-                            {
-                                result[y - 2][x - 1] = MoveType.Move;
-                            }
+                            result[y - 2][x - 1] = MoveType.Protect;
                         }
                     }
                 }
