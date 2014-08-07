@@ -26,9 +26,9 @@ namespace Chess.Tests
 
             var moves = pawn.GetAvailableMoves(game);
 
-            Assert.IsFalse(moves[1][0]);
-            Assert.IsTrue(moves[2][0]);
-            Assert.IsTrue(moves[3][0]);
+            Assert.AreEqual(MoveType.None, moves[1][0]);
+            Assert.AreEqual(MoveType.Move, moves[2][0]);
+            Assert.AreEqual(MoveType.Move, moves[3][0]);
         }
 
         [TestMethod]
@@ -39,9 +39,9 @@ namespace Chess.Tests
 
             var moves = pawn.GetAvailableMoves(game);
 
-            Assert.IsFalse(moves[4][0]);
-            Assert.IsTrue(moves[5][0]);
-            Assert.IsFalse(moves[6][0]);
+            Assert.AreEqual(MoveType.None, moves[4][0]);
+            Assert.AreEqual(MoveType.Move, moves[5][0]);
+            Assert.AreEqual(MoveType.None, moves[6][0]);
         }
 
         [TestMethod]
@@ -54,12 +54,12 @@ namespace Chess.Tests
 
             var moves = pawn.GetAvailableMoves(game);
 
-            Assert.IsFalse(moves[4][4]);
-            Assert.IsTrue(moves[5][4]);
-            Assert.IsFalse(moves[6][4]);
+            Assert.AreEqual(MoveType.None, moves[4][4]);
+            Assert.AreEqual(MoveType.Move, moves[5][4]);
+            Assert.AreEqual(MoveType.None, moves[6][4]);
 
-            Assert.IsTrue(moves[5][3]);
-            Assert.IsTrue(moves[5][5]);
+            Assert.AreEqual(MoveType.Kill, moves[5][3]);
+            Assert.AreEqual(MoveType.Kill, moves[5][5]);
         }
 
         [TestMethod]
@@ -70,9 +70,9 @@ namespace Chess.Tests
 
             var moves = pawn.GetAvailableMoves(game);
 
-            Assert.IsFalse(moves[6][0]);
-            Assert.IsTrue(moves[5][0]);
-            Assert.IsTrue(moves[4][0]);
+            Assert.AreEqual(MoveType.None, moves[6][0]);
+            Assert.AreEqual(MoveType.Move, moves[5][0]);
+            Assert.AreEqual(MoveType.Move, moves[4][0]);
         }
 
         [TestMethod]
@@ -83,9 +83,9 @@ namespace Chess.Tests
 
             var moves = pawn.GetAvailableMoves(game);
 
-            Assert.IsFalse(moves[4][0]);
-            Assert.IsTrue(moves[3][0]);
-            Assert.IsFalse(moves[2][0]);
+            Assert.AreEqual(MoveType.None, moves[4][0]);
+            Assert.AreEqual(MoveType.Move, moves[3][0]);
+            Assert.AreEqual(MoveType.None, moves[2][0]);
         }
 
         [TestMethod]
@@ -98,12 +98,12 @@ namespace Chess.Tests
 
             var moves = pawn.GetAvailableMoves(game);
 
-            Assert.IsFalse(moves[4][4]);
-            Assert.IsTrue(moves[3][4]);
-            Assert.IsFalse(moves[2][4]);
+            Assert.AreEqual(MoveType.None, moves[4][4]);
+            Assert.AreEqual(MoveType.Move, moves[3][4]);
+            Assert.AreEqual(MoveType.None, moves[2][4]);
 
-            Assert.IsTrue(moves[3][3]);
-            Assert.IsTrue(moves[3][5]);
+            Assert.AreEqual(MoveType.Kill, moves[3][3]);
+            Assert.AreEqual(MoveType.Kill, moves[3][5]);
         }
 
     }

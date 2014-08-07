@@ -40,6 +40,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="BoardPoint.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="MoveType.cs" />
     <Compile Include="Pieces\Bishop.cs" />
     <Compile Include="Pieces\Piece.cs" />
     <Compile Include="Pieces\King.cs" />

@@ -27,10 +27,10 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[4][3]);
-            Assert.IsTrue(moves[4][2]);
-            Assert.IsFalse(moves[4][1]);
-            Assert.IsFalse(moves[4][0]);
+            Assert.AreEqual(MoveType.Move, moves[4][3]);
+            Assert.AreEqual(MoveType.Move, moves[4][2]);
+            Assert.AreEqual(MoveType.Protect, moves[4][1]);
+            Assert.AreEqual(MoveType.None, moves[4][0]);
         }
 
         [TestMethod]
@@ -42,10 +42,10 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[4][3]);
-            Assert.IsTrue(moves[4][2]);
-            Assert.IsTrue(moves[4][1]);
-            Assert.IsFalse(moves[4][0]);
+            Assert.AreEqual(MoveType.Move, moves[4][3]);
+            Assert.AreEqual(MoveType.Move, moves[4][2]);
+            Assert.AreEqual(MoveType.Kill, moves[4][1]);
+            Assert.AreEqual(MoveType.None, moves[4][0]);
         }
 
         [TestMethod]
@@ -57,9 +57,9 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[4][5]);
-            Assert.IsFalse(moves[4][6]);
-            Assert.IsFalse(moves[4][7]);
+            Assert.AreEqual(MoveType.Move, moves[4][5]);
+            Assert.AreEqual(MoveType.Protect, moves[4][6]);
+            Assert.AreEqual(MoveType.None, moves[4][7]);
         }
 
         [TestMethod]
@@ -71,9 +71,9 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[4][5]);
-            Assert.IsTrue(moves[4][6]);
-            Assert.IsFalse(moves[4][7]);
+            Assert.AreEqual(MoveType.Move, moves[4][5]);
+            Assert.AreEqual(MoveType.Kill, moves[4][6]);
+            Assert.AreEqual(MoveType.None, moves[4][7]);
         }
 
         [TestMethod]
@@ -85,10 +85,10 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[3][4]);
-            Assert.IsTrue(moves[2][4]);
-            Assert.IsFalse(moves[1][4]);
-            Assert.IsFalse(moves[0][4]);
+            Assert.AreEqual(MoveType.Move, moves[3][4]);
+            Assert.AreEqual(MoveType.Move, moves[2][4]);
+            Assert.AreEqual(MoveType.Protect, moves[1][4]);
+            Assert.AreEqual(MoveType.None, moves[0][4]);
         }
 
         [TestMethod]
@@ -100,10 +100,10 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[3][4]);
-            Assert.IsTrue(moves[2][4]);
-            Assert.IsTrue(moves[1][4]);
-            Assert.IsFalse(moves[0][4]);
+            Assert.AreEqual(MoveType.Move, moves[3][4]);
+            Assert.AreEqual(MoveType.Move, moves[2][4]);
+            Assert.AreEqual(MoveType.Kill, moves[1][4]);
+            Assert.AreEqual(MoveType.None, moves[0][4]);
         }
 
         [TestMethod]
@@ -115,9 +115,9 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[5][4]);
-            Assert.IsFalse(moves[6][4]);
-            Assert.IsFalse(moves[7][4]);
+            Assert.AreEqual(MoveType.Move, moves[5][4]);
+            Assert.AreEqual(MoveType.Protect, moves[6][4]);
+            Assert.AreEqual(MoveType.None, moves[7][4]);
         }
 
         [TestMethod]
@@ -129,9 +129,9 @@ namespace Chess.Tests
 
             var moves = rook.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[5][4]);
-            Assert.IsTrue(moves[6][4]);
-            Assert.IsFalse(moves[7][4]);
+            Assert.AreEqual(MoveType.Move, moves[5][4]);
+            Assert.AreEqual(MoveType.Kill, moves[6][4]);
+            Assert.AreEqual(MoveType.None, moves[7][4]);
         }
 
     }

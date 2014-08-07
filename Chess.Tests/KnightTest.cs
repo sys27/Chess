@@ -26,17 +26,17 @@ namespace Chess.Tests
 
             var moves = knight.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[6][3]);
-            Assert.IsTrue(moves[6][5]);
+            Assert.AreEqual(MoveType.Move, moves[6][3]);
+            Assert.AreEqual(MoveType.Move, moves[6][5]);
 
-            Assert.IsTrue(moves[5][2]);
-            Assert.IsTrue(moves[5][6]);
+            Assert.AreEqual(MoveType.Move, moves[5][2]);
+            Assert.AreEqual(MoveType.Move, moves[5][6]);
 
-            Assert.IsTrue(moves[3][2]);
-            Assert.IsTrue(moves[3][6]);
+            Assert.AreEqual(MoveType.Move, moves[3][2]);
+            Assert.AreEqual(MoveType.Move, moves[3][6]);
 
-            Assert.IsTrue(moves[2][3]);
-            Assert.IsTrue(moves[2][5]);
+            Assert.AreEqual(MoveType.Move, moves[2][3]);
+            Assert.AreEqual(MoveType.Move, moves[2][5]);
         }
 
         [TestMethod]
@@ -48,17 +48,17 @@ namespace Chess.Tests
 
             var moves = knight.GetAvailableMoves(game);
 
-            Assert.IsFalse(moves[6][3]);
-            Assert.IsTrue(moves[6][5]);
+            Assert.AreEqual(MoveType.Move, moves[6][3]);
+            Assert.AreEqual(MoveType.Move, moves[6][5]);
 
-            Assert.IsTrue(moves[5][2]);
-            Assert.IsTrue(moves[5][6]);
+            Assert.AreEqual(MoveType.Move, moves[5][2]);
+            Assert.AreEqual(MoveType.Move, moves[5][6]);
 
-            Assert.IsTrue(moves[3][2]);
-            Assert.IsTrue(moves[3][6]);
+            Assert.AreEqual(MoveType.Move, moves[3][2]);
+            Assert.AreEqual(MoveType.Move, moves[3][6]);
 
-            Assert.IsTrue(moves[2][3]);
-            Assert.IsTrue(moves[2][5]);
+            Assert.AreEqual(MoveType.Move, moves[2][3]);
+            Assert.AreEqual(MoveType.Move, moves[2][5]);
         }
 
         [TestMethod]
@@ -70,17 +70,17 @@ namespace Chess.Tests
 
             var moves = knight.GetAvailableMoves(game);
 
-            Assert.IsTrue(moves[6][3]);
-            Assert.IsTrue(moves[6][5]);
+            Assert.AreEqual(MoveType.Move, moves[6][3]);
+            Assert.AreEqual(MoveType.Move, moves[6][5]);
 
-            Assert.IsTrue(moves[5][2]);
-            Assert.IsTrue(moves[5][6]);
+            Assert.AreEqual(MoveType.Move, moves[5][2]);
+            Assert.AreEqual(MoveType.Move, moves[5][6]);
 
-            Assert.IsTrue(moves[3][2]);
-            Assert.IsTrue(moves[3][6]);
+            Assert.AreEqual(MoveType.Move, moves[3][2]);
+            Assert.AreEqual(MoveType.Move, moves[3][6]);
 
-            Assert.IsTrue(moves[2][3]);
-            Assert.IsTrue(moves[2][5]);
+            Assert.AreEqual(MoveType.Move, moves[2][3]);
+            Assert.AreEqual(MoveType.Move, moves[2][5]);
         }
 
     }

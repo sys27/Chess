@@ -27,28 +27,28 @@ namespace Chess.Library.Pieces
             return base.ToString("King");
         }
 
-        public override bool CanMove(Game game, int y, int x)
+        public override MoveType CanMove(Game game, int y, int x)
         {
             // todo: reimplement
             return GetAvailableMoves(game)[y][x];
         }
 
-        public override bool[][] GetAvailableMoves(Game game)
+        public override MoveType[][] GetAvailableMoves(Game game)
         {
-            var result = new bool[8][];
+            var result = new MoveType[8][];
             for (int i = 0; i < 8; i++)
-                result[i] = new bool[8];
+                result[i] = new MoveType[8];
 
             // todo: Castling
 
-            if (!check)
-            {
+            //if (!check)
+            //{
 
-            }
-            else
-            {
+            //}
+            //else
+            //{
 
-            }
+            //}
 
             return result;
         }

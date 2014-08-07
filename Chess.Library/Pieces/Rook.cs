@@ -26,17 +26,17 @@ namespace Chess.Library.Pieces
             return base.ToString("Rook");
         }
 
-        public override bool CanMove(Game game, int y, int x)
-        { 
+        public override MoveType CanMove(Game game, int y, int x)
+        {
             // todo: reimplement
             return GetAvailableMoves(game)[y][x];
         }
 
-        public override bool[][] GetAvailableMoves(Game game)
+        public override MoveType[][] GetAvailableMoves(Game game)
         {
-            var result = new bool[8][];
+            var result = new MoveType[8][];
             for (int i = 0; i < 8; i++)
-                result[i] = new bool[8];
+                result[i] = new MoveType[8];
 
             if (!game.GetCheck(color))
             {
@@ -46,13 +46,18 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (piece.Color != color && !(piece is King))
-                            result[coordinates.Y][i] = true;
+                        if (!(piece is King))
+                        {
+                            if (piece.Color != color)
+                                result[coordinates.Y][i] = MoveType.Kill;
+                            else
+                                result[coordinates.Y][i] = MoveType.Protect;
+                        }
 
                         break;
                     }
 
-                    result[coordinates.Y][i] = true;
+                    result[coordinates.Y][i] = MoveType.Move;
                 }
 
                 // right
@@ -61,13 +66,18 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (piece.Color != color && !(piece is King))
-                            result[coordinates.Y][i] = true;
+                        if (!(piece is King))
+                        {
+                            if (piece.Color != color)
+                                result[coordinates.Y][i] = MoveType.Kill;
+                            else
+                                result[coordinates.Y][i] = MoveType.Protect;
+                        }
 
                         break;
                     }
 
-                    result[coordinates.Y][i] = true;
+                    result[coordinates.Y][i] = MoveType.Move;
                 }
 
                 // up
@@ -76,33 +86,43 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
-                        if (piece.Color != color && !(piece is King))
-                            result[i][coordinates.X] = true;
+                        if (!(piece is King))
+                        {
+                            if (piece.Color != color)
+                                result[i][coordinates.X] = MoveType.Kill;
+                            else
+                                result[i][coordinates.X] = MoveType.Protect;
+                        }
 
                         break;
                     }
 
-                    result[i][coordinates.X] = true;
+                    result[i][coordinates.X] = MoveType.Move;
                 }
 
                 // down
                 for (int i = coordinates.Y + 1; i < 8; i++)
                 {
                     var piece = game.GameBoard[i, coordinates.X];
-                    if (game.GameBoard[i, coordinates.X] != null)
+                    if (piece != null)
                     {
-                        if (piece.Color != color && !(piece is King))
-                            result[i][coordinates.X] = true;
+                        if (!(piece is King))
+                        {
+                            if (piece.Color != color)
+                                result[i][coordinates.X] = MoveType.Kill;
+                            else
+                                result[i][coordinates.X] = MoveType.Protect;
+                        }
 
                         break;
                     }
 
-                    result[i][coordinates.X] = true;
+                    result[i][coordinates.X] = MoveType.Move;
                 }
             }
             else
             {
-                
+
             }
 
             return result;
