@@ -40,14 +40,14 @@ namespace Chess.Library.Pieces
 
             // todo: Castling
 
-            //if (!check)
-            //{
+            if (!game.GetCheck(color))
+            {
 
-            //}
-            //else
-            //{
+            }
+            else
+            {
 
-            //}
+            }
 
             return result;
         }
