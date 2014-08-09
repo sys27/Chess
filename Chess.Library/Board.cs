@@ -12,8 +12,6 @@ namespace Chess.Library
     {
 
         private Piece[][] board;
-        private King whiteKing;
-        private King blackKing;
        
         public Board()
             : this(false) { }
@@ -78,8 +76,7 @@ namespace Chess.Library
             // queen
             this[7, 3] = new Queen(PieceColor.White);
             // king
-            whiteKing = new King(PieceColor.White);
-            this[7, 4] = whiteKing;
+            this[7, 4] = new King(PieceColor.White);
 
             // pawns
             for (int i = 0; i < 8; i++)
@@ -103,8 +100,7 @@ namespace Chess.Library
             // queen
             this[0, 3] = new Queen(PieceColor.Black);
             // king
-            blackKing = new King(PieceColor.Black);
-            this[0, 4] = blackKing;
+            this[0, 4] = new King(PieceColor.Black);
 
             // pawns
             for (int i = 0; i < 8; i++)
@@ -140,22 +136,6 @@ namespace Chess.Library
         public static Board CreateEmpty()
         {
             return new Board(true);
-        }
-
-        internal King WhiteKing
-        {
-            get
-            {
-                return whiteKing;
-            }
-        }
-
-        internal King BlackKing
-        {
-            get
-            {
-                return blackKing;
-            }
         }
         
     }

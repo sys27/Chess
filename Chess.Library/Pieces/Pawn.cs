@@ -45,7 +45,7 @@ namespace Chess.Library.Pieces
 
             if (color == PieceColor.White)
             {
-                if (!game.WhiteKingCheck)
+                if (!game.WhiteCheck)
                 {
                     if (!isMoved && y - 2 >= 0 && game.GameBoard[y - 2, x] == null)
                         result[y - 2][x] = MoveType.Move;
@@ -97,7 +97,7 @@ namespace Chess.Library.Pieces
             }
             else
             {
-                if (!game.BlackKingCheck)
+                if (!game.BlackCheck)
                 {
                     if (!isMoved && y + 2 >= 0 && game.GameBoard[y + 2, x] == null)
                         result[y + 2][x] = MoveType.Move;

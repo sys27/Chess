@@ -10,7 +10,6 @@ namespace Chess.Library.Pieces
     public class King : Piece
     {
 
-        private bool check;
         private bool isMoved;
 
         public King(PieceColor color)
@@ -52,19 +51,7 @@ namespace Chess.Library.Pieces
 
             return result;
         }
-
-        public bool Check
-        {
-            get
-            {
-                return check;
-            }
-            set
-            {
-                check = value;
-            }
-        }
-
+        
         public bool IsMoved
         {
             get

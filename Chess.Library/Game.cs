@@ -12,6 +12,8 @@ namespace Chess.Library
     {
 
         private Board board;
+        private bool whiteCheck;
+        private bool blackCheck;
 
         private List<PieceMove> moves;
 
@@ -48,24 +50,24 @@ namespace Chess.Library
         public bool GetCheck(PieceColor color)
         {
             if (color == PieceColor.White)
-                return WhiteKingCheck;
+                return WhiteCheck;
 
-            return BlackKingCheck;
+            return BlackCheck;
         }
 
-        public bool WhiteKingCheck
+        public bool WhiteCheck
         {
             get
             {
-                return board.WhiteKing == null ? false : board.WhiteKing.Check;
+                return whiteCheck;
             }
         }
 
-        public bool BlackKingCheck
+        public bool BlackCheck
         {
             get
             {
-                return board.BlackKing == null ? false : board.BlackKing.Check;
+                return blackCheck;
             }
         }
 
