@@ -83,6 +83,28 @@ namespace Chess.Tests
             Assert.AreEqual(MoveType.Move, moves[2][5]);
         }
 
+        [TestMethod]
+        public void GetAvailableMoves_Check()
+        {
+            var knight = new Knight(PieceColor.White);
+            game.GameBoard[4, 4] = knight;
+            game.GameBoard[6, 3] = new King(PieceColor.Black);
+
+            var moves = knight.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.Check, moves[6][3]);
+            Assert.AreEqual(MoveType.Move, moves[6][5]);
+
+            Assert.AreEqual(MoveType.Move, moves[5][2]);
+            Assert.AreEqual(MoveType.Move, moves[5][6]);
+
+            Assert.AreEqual(MoveType.Move, moves[3][2]);
+            Assert.AreEqual(MoveType.Move, moves[3][6]);
+
+            Assert.AreEqual(MoveType.Move, moves[2][3]);
+            Assert.AreEqual(MoveType.Move, moves[2][5]);
+        }
+
     }
 
 }
