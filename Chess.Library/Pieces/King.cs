@@ -40,9 +40,47 @@ namespace Chess.Library.Pieces
 
             // todo: Castling
 
+            var y = coordinates.Y;
+            var x = coordinates.X;
+
             if (!game.GetCheck(color))
             {
+                if (y - 1 >= 0)
+                {
+                    if (x - 1 >= 0)
+                    {
+                        // up-left
+                    }
+                    if (x + 1 < 8)
+                    {
+                        // up-right
+                    }
 
+                    // up
+                }
+
+                if (x - 1 >= 0)
+                {
+                    // left
+                }
+                if (x + 1 < 8)
+                {
+                    // right
+                }
+
+                if (y + 1 < 8)
+                {
+                    if (x - 1 >= 0)
+                    {
+                        // down-left
+                    }
+                    if (x + 1 < 8)
+                    {
+                        // down-right
+                    }
+
+                    // down
+                }
             }
             else
             {
@@ -51,7 +89,7 @@ namespace Chess.Library.Pieces
 
             return result;
         }
-        
+
         public bool IsMoved
         {
             get
