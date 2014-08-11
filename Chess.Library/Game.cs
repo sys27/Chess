@@ -26,13 +26,15 @@ namespace Chess.Library
             this.moves = new List<PieceMove>();
         }
 
-        internal bool IsCellNotAttacked(int y, int x, PieceColor color)
+        internal bool IsCellNotAttacked(int y, int x, PieceColor oppositeColor)
         {
-            return IsCellAttacked(y, x, color) == MoveType.None;
+            return IsCellAttacked(y, x, oppositeColor) == MoveType.None;
         }
 
-        internal MoveType IsCellAttacked(int y, int x, PieceColor color)
+        internal MoveType IsCellAttacked(int y, int x, PieceColor oppositeColor)
         {
+            var color = oppositeColor == PieceColor.White ? PieceColor.Black : PieceColor.White;
+
             for (int _y = 0; _y < 8; _y++)
             {
                 for (int _x = 0; _x < 8; _x++)

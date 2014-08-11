@@ -34,7 +34,7 @@ namespace Chess.Library.Pieces
 
         private void CheckCell(int y, int x, MoveType[][] result, Game game)
         {
-            if (game.IsCellNotAttacked(y, x, ~color))
+            if (game.IsCellNotAttacked(y, x, color))
             {
                 var piece = game.GameBoard[y, x];
                 if (piece != null)

@@ -14,6 +14,7 @@ namespace Chess.Library
         Move,
         Protect,
         Kill,
+        GhostKill,
         Check
 
     }

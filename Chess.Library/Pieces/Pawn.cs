@@ -47,11 +47,13 @@ namespace Chess.Library.Pieces
             {
                 if (!game.WhiteCheck)
                 {
-                    if (!isMoved && y - 2 >= 0 && game.GameBoard[y - 2, x] == null)
-                        result[y - 2][x] = MoveType.Move;
-
                     if (y - 1 >= 0 && game.GameBoard[y - 1, x] == null)
+                    {
                         result[y - 1][x] = MoveType.Move;
+
+                        if (!isMoved && y - 2 >= 0 && game.GameBoard[y - 2, x] == null)
+                            result[y - 2][x] = MoveType.Move;
+                    }
 
                     if (y - 1 >= 0 && x - 1 >= 0)
                     {
@@ -69,6 +71,10 @@ namespace Chess.Library.Pieces
                             {
                                 result[y - 1][x - 1] = MoveType.Protect;
                             }
+                        }
+                        else
+                        {
+                            result[y - 1][x - 1] = MoveType.GhostKill;
                         }
                     }
                     if (y - 1 >= 0 && x + 1 >= 0)
@@ -88,6 +94,10 @@ namespace Chess.Library.Pieces
                                 result[y - 1][x + 1] = MoveType.Protect;
                             }
                         }
+                        else
+                        {
+                            result[y - 1][x + 1] = MoveType.GhostKill;
+                        }
                     }
                 }
                 else
@@ -99,11 +109,13 @@ namespace Chess.Library.Pieces
             {
                 if (!game.BlackCheck)
                 {
-                    if (!isMoved && y + 2 >= 0 && game.GameBoard[y + 2, x] == null)
-                        result[y + 2][x] = MoveType.Move;
-
                     if (y + 1 >= 0 && game.GameBoard[y + 1, x] == null)
+                    {
                         result[y + 1][x] = MoveType.Move;
+
+                        if (!isMoved && y + 2 >= 0 && game.GameBoard[y + 2, x] == null)
+                            result[y + 2][x] = MoveType.Move;
+                    }
 
                     if (y + 1 >= 0 && x - 1 >= 0)
                     {
@@ -122,6 +134,10 @@ namespace Chess.Library.Pieces
                                 result[y + 1][x - 1] = MoveType.Protect;
                             }
                         }
+                        else
+                        {
+                            result[y + 1][x - 1] = MoveType.GhostKill;
+                        }
                     }
                     if (y + 1 >= 0 && x + 1 >= 0)
                     {
@@ -139,6 +155,10 @@ namespace Chess.Library.Pieces
                             {
                                 result[y + 1][x + 1] = MoveType.Protect;
                             }
+                        }
+                        else
+                        {
+                            result[y + 1][x + 1] = MoveType.GhostKill;
                         }
                     }
                 }

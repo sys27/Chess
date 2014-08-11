@@ -36,6 +36,57 @@ namespace Chess.Tests
             Assert.AreEqual(MoveType.Move, moves[5][5]);
         }
 
+        [TestMethod]
+        public void GetAvailableMoves_Protect()
+        {
+            var king = new King(PieceColor.White);
+            game.GameBoard[4, 4] = king;
+            game.GameBoard[3, 4] = new Pawn(PieceColor.White);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.Protect, moves[3][4]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_MoveToCheck()
+        {
+            var king = new King(PieceColor.White);
+            game.GameBoard[4, 4] = king;
+            game.GameBoard[3, 0] = new Rook(PieceColor.Black);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[3][4]);
+            Assert.AreEqual(MoveType.None, moves[3][3]);
+            Assert.AreEqual(MoveType.None, moves[3][5]);
+            Assert.AreEqual(MoveType.Move, moves[4][3]);
+            Assert.AreEqual(MoveType.Move, moves[4][5]);
+            Assert.AreEqual(MoveType.Move, moves[5][3]);
+            Assert.AreEqual(MoveType.Move, moves[5][4]);
+            Assert.AreEqual(MoveType.Move, moves[5][5]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_KillToCheck()
+        {
+            var king = new King(PieceColor.White);
+            game.GameBoard[4, 4] = king;
+            game.GameBoard[3, 0] = new Rook(PieceColor.Black);
+            game.GameBoard[3, 4] = new Pawn(PieceColor.Black);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[3][4]);
+            Assert.AreEqual(MoveType.None, moves[3][3]);
+            Assert.AreEqual(MoveType.Move, moves[3][5]);
+            Assert.AreEqual(MoveType.None, moves[4][3]);
+            Assert.AreEqual(MoveType.None, moves[4][5]);
+            Assert.AreEqual(MoveType.Move, moves[5][3]);
+            Assert.AreEqual(MoveType.Move, moves[5][4]);
+            Assert.AreEqual(MoveType.Move, moves[5][5]);
+        }
+
     }
 
 }

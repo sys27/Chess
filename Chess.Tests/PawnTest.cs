@@ -19,6 +19,22 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void GetAvailableMoves_BlackAllMove()
+        {
+            var pawn = new Pawn(PieceColor.Black);
+            game.GameBoard[4, 4] = pawn;
+
+            var moves = pawn.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[4][4]);
+            Assert.AreEqual(MoveType.Move, moves[5][4]);
+            Assert.AreEqual(MoveType.Move, moves[6][4]);
+
+            Assert.AreEqual(MoveType.GhostKill, moves[5][3]);
+            Assert.AreEqual(MoveType.GhostKill, moves[5][5]);
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_BlackStartMove()
         {
             var pawn = new Pawn(PieceColor.Black);
@@ -95,6 +111,22 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void GetAvailableMoves_WhiteAllMove()
+        {
+            var pawn = new Pawn(PieceColor.White);
+            game.GameBoard[4, 4] = pawn;
+
+            var moves = pawn.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[4][4]);
+            Assert.AreEqual(MoveType.Move, moves[3][4]);
+            Assert.AreEqual(MoveType.Move, moves[2][4]);
+
+            Assert.AreEqual(MoveType.GhostKill, moves[3][3]);
+            Assert.AreEqual(MoveType.GhostKill, moves[3][5]);
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_WhiteStartMove()
         {
             var pawn = new Pawn(PieceColor.White);
@@ -168,6 +200,20 @@ namespace Chess.Tests
             Assert.AreEqual(MoveType.None, moves[2][4]);
 
             Assert.AreEqual(MoveType.Check, moves[3][5]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_BlackStartJump()
+        {
+            var pawn = new Pawn(PieceColor.Black);
+            game.GameBoard[1, 0] = pawn;
+            game.GameBoard[2, 0] = new Pawn(PieceColor.White);
+
+            var moves = pawn.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[1][0]);
+            Assert.AreEqual(MoveType.None, moves[2][0]);
+            Assert.AreEqual(MoveType.None, moves[3][0]);
         }
 
     }
