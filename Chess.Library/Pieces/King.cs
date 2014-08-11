@@ -34,19 +34,19 @@ namespace Chess.Library.Pieces
 
         private void CheckCell(int y, int x, MoveType[][] result, Game game)
         {
-            if (game.IsCellNotAttacked(y - 1, x, color))
+            if (game.IsCellNotAttacked(y, x, ~color))
             {
-                var piece = game.GameBoard[y - 1, x];
+                var piece = game.GameBoard[y, x];
                 if (piece != null)
                 {
                     if (piece.Color == color)
-                        result[y - 1][x] = MoveType.Protect;
+                        result[y][x] = MoveType.Protect;
                     else
-                        result[y - 1][x] = MoveType.Kill;
+                        result[y][x] = MoveType.Kill;
                 }
                 else
                 {
-                    result[y - 1][x] = MoveType.Move;
+                    result[y][x] = MoveType.Move;
                 }
             }
         }
