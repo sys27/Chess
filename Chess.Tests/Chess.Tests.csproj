@@ -57,6 +57,7 @@
     <Compile Include="KnightTest.cs" />
     <Compile Include="PawnTest.cs" />
     <Compile Include="QueenTest.cs" />
+    <Compile Include="KingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Chess.Library\Chess.Library.csproj">

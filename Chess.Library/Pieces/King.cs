@@ -32,6 +32,25 @@ namespace Chess.Library.Pieces
             return GetAvailableMoves(game)[y][x];
         }
 
+        private void CheckCell(int y, int x, MoveType[][] result, Game game)
+        {
+            if (game.IsCellNotAttacked(y - 1, x, color))
+            {
+                var piece = game.GameBoard[y - 1, x];
+                if (piece != null)
+                {
+                    if (piece.Color == color)
+                        result[y - 1][x] = MoveType.Protect;
+                    else
+                        result[y - 1][x] = MoveType.Kill;
+                }
+                else
+                {
+                    result[y - 1][x] = MoveType.Move;
+                }
+            }
+        }
+
         public override MoveType[][] GetAvailableMoves(Game game)
         {
             var result = new MoveType[8][];
@@ -43,48 +62,29 @@ namespace Chess.Library.Pieces
             var y = coordinates.Y;
             var x = coordinates.X;
 
-            if (!game.GetCheck(color))
+            if (y - 1 >= 0)
             {
-                if (y - 1 >= 0)
-                {
-                    if (x - 1 >= 0)
-                    {
-                        // up-left
-                    }
-                    if (x + 1 < 8)
-                    {
-                        // up-right
-                    }
-
-                    // up
-                }
-
                 if (x - 1 >= 0)
-                {
-                    // left
-                }
+                    CheckCell(y - 1, x - 1, result, game);
                 if (x + 1 < 8)
-                {
-                    // right
-                }
+                    CheckCell(y - 1, x + 1, result, game);
 
-                if (y + 1 < 8)
-                {
-                    if (x - 1 >= 0)
-                    {
-                        // down-left
-                    }
-                    if (x + 1 < 8)
-                    {
-                        // down-right
-                    }
-
-                    // down
-                }
+                CheckCell(y - 1, x, result, game);
             }
-            else
-            {
 
+            if (x - 1 >= 0)
+                CheckCell(y, x - 1, result, game);
+            if (x + 1 < 8)
+                CheckCell(y, x + 1, result, game);
+
+            if (y + 1 < 8)
+            {
+                if (x - 1 >= 0)
+                    CheckCell(y + 1, x - 1, result, game);
+                if (x + 1 < 8)
+                    CheckCell(y + 1, x + 1, result, game);
+
+                CheckCell(y + 1, x, result, game);
             }
 
             return result;
