@@ -87,6 +87,47 @@ namespace Chess.Tests
             Assert.AreEqual(MoveType.Move, moves[5][5]);
         }
 
+        [TestMethod]
+        public void GetAvailableMoves_Kill()
+        {
+            var king = new King(PieceColor.White);
+            game.GameBoard[4, 4] = king;
+            game.GameBoard[3, 3] = new Rook(PieceColor.Black);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[3][4]);
+            Assert.AreEqual(MoveType.Kill, moves[3][3]);
+            Assert.AreEqual(MoveType.None, moves[3][5]);
+            Assert.AreEqual(MoveType.None, moves[4][3]);
+            Assert.AreEqual(MoveType.Move, moves[4][5]);
+            Assert.AreEqual(MoveType.None, moves[5][3]);
+            Assert.AreEqual(MoveType.Move, moves[5][4]);
+            Assert.AreEqual(MoveType.Move, moves[5][5]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_NoMoves()
+        {
+            var king = new King(PieceColor.White);
+            game.GameBoard[4, 4] = king;
+            game.GameBoard[3, 3] = new Rook(PieceColor.Black);
+            game.GameBoard[3, 5] = new Rook(PieceColor.Black);
+            game.GameBoard[5, 3] = new Rook(PieceColor.Black);
+            game.GameBoard[5, 5] = new Rook(PieceColor.Black);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[3][4]);
+            Assert.AreEqual(MoveType.None, moves[3][3]);
+            Assert.AreEqual(MoveType.None, moves[3][5]);
+            Assert.AreEqual(MoveType.None, moves[4][3]);
+            Assert.AreEqual(MoveType.None, moves[4][5]);
+            Assert.AreEqual(MoveType.None, moves[5][3]);
+            Assert.AreEqual(MoveType.None, moves[5][4]);
+            Assert.AreEqual(MoveType.None, moves[5][5]);
+        }
+
     }
 
 }
