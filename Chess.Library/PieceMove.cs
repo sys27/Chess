@@ -15,11 +15,10 @@ namespace Chess.Library
         private BoardPoint to;
         private Piece originalPiece;
 
-        public PieceMove(BoardPoint from, BoardPoint to, Piece originalPiece)
+        public PieceMove(BoardPoint from, BoardPoint to)
         {
             this.from = from;
             this.to = to;
-            this.originalPiece = originalPiece;
         }
 
         public BoardPoint From
@@ -43,6 +42,10 @@ namespace Chess.Library
             get
             {
                 return originalPiece;
+            }
+            internal set
+            {
+                originalPiece = value;
             }
         }
 

@@ -111,7 +111,7 @@ namespace Chess.Library
         {
             if (this[to] != null)
                 // todo: ...
-                throw new Exception();
+                throw new BoardMoveException();
 
             this[to] = this[from];
             this[from] = null;
@@ -125,6 +125,16 @@ namespace Chess.Library
             this[from] = null;
 
             return piece;
+        }
+
+        public void Undo(BoardPoint from, BoardPoint to)
+        {
+            if (this[from] != null)
+                // todo: ...
+                throw new BoardMoveException();
+
+            this[from] = this[to];
+            this[to] = null;
         }
 
         public void UndoKill(BoardPoint from, BoardPoint to, Piece piece)
