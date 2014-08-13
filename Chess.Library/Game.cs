@@ -15,6 +15,7 @@ namespace Chess.Library
         private bool whiteCheck;
         private bool blackCheck;
 
+        private bool undoable = true;
         private Players currentPlayer;
         private Dictionary<Players, PieceColor> playersColors;
 
@@ -35,6 +36,11 @@ namespace Chess.Library
             };
         }
 
+        public void Turn(int fromY, int fromX, int toY, int toX)
+        {
+            Turn(new PieceMove(new BoardPoint(fromY, fromX), new BoardPoint(toY, toX)));
+        }
+
         public void Turn(BoardPoint from, BoardPoint to)
         {
             Turn(new PieceMove(from, to));
@@ -44,11 +50,11 @@ namespace Chess.Library
         {
             var piece = board[pieceMove.From];
             if (piece == null)
-                //todo: ...
+                // todo: ...
                 throw new GameTurnException();
 
             if (piece.Color != playersColors[currentPlayer])
-                //todo: ...
+                // todo: ...
                 throw new GameTurnException();
 
             var moves = piece.GetAvailableMoves(this);
@@ -65,7 +71,7 @@ namespace Chess.Library
             }
             else
             {
-                //todo: ...
+                // todo: ...
                 throw new GameTurnException();
             }
 
@@ -75,8 +81,12 @@ namespace Chess.Library
 
         public void Undo()
         {
+            if (!undoable)
+                // todo: ...
+                throw new GameTurnException();
+
             if (allMoves.Count < 2)
-                //todo: ...
+                // todo: ...
                 throw new GameTurnException();
 
             var lastIndex = allMoves.Count - 1;
@@ -160,6 +170,26 @@ namespace Chess.Library
             get
             {
                 return currentPlayer;
+            }
+        }
+
+        public bool Undoable
+        {
+            get
+            {
+                return undoable;
+            }
+            set
+            {
+                undoable = value;
+            }
+        }
+
+        public IEnumerable<PieceMove> Moves
+        {
+            get
+            {
+                return allMoves;
             }
         }
 

@@ -12,7 +12,7 @@ namespace Chess.Library
     {
 
         private Piece[][] board;
-       
+
         public Board()
             : this(false) { }
 
@@ -29,7 +29,8 @@ namespace Chess.Library
             }
             set
             {
-                value.Coordinates = new BoardPoint(y, x);
+                if (value != null)
+                    value.Coordinates = new BoardPoint(y, x);
                 board[y][x] = value;
             }
         }
@@ -139,15 +140,15 @@ namespace Chess.Library
 
         public void UndoKill(BoardPoint from, BoardPoint to, Piece piece)
         {
-            this[to] = this[from];
-            this[from] = piece;
+            this[from] = this[to];
+            this[to] = piece;
         }
 
         public static Board CreateEmpty()
         {
             return new Board(true);
         }
-        
+
     }
 
 }
