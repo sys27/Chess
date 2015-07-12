@@ -17,7 +17,6 @@ namespace Chess.Library
 
         private bool undoable = true;
         private Players currentPlayer;
-        private Dictionary<Players, PieceColor> playersColors;
 
         private List<PieceMove> allMoves;
 
@@ -28,12 +27,7 @@ namespace Chess.Library
         {
             this.board = board;
             this.allMoves = new List<PieceMove>();
-            this.currentPlayer = Players.PlayerTwo;
-            this.playersColors = new Dictionary<Players, PieceColor>()
-            {
-                { Players.PlayerOne, PieceColor.Black },
-                { Players.PlayerTwo, PieceColor.White }
-            };
+            this.currentPlayer = Players.PlayerOne;
         }
 
         public void Turn(int fromY, int fromX, int toY, int toX)
@@ -53,27 +47,19 @@ namespace Chess.Library
                 // todo: ...
                 throw new GameTurnException();
 
-            if (piece.Color != playersColors[currentPlayer])
+            if (piece.Owner != currentPlayer)
                 // todo: ...
                 throw new GameTurnException();
 
-            var moves = piece.GetAvailableMoves(this);
-            var move = moves[pieceMove.To.Y][pieceMove.To.X];
+            var move = piece.CanMove(this, pieceMove.To);
 
             if (move == MoveType.Move)
-            {
                 board.Move(pieceMove.From, pieceMove.To);
-            }
             else if (move == MoveType.Kill)
-            {
-                var killedPiece = board.Kill(pieceMove.From, pieceMove.To);
-                pieceMove.OriginalPiece = killedPiece;
-            }
+                pieceMove.OriginalPiece = board.Kill(pieceMove.From, pieceMove.To);
             else
-            {
                 // todo: ...
                 throw new GameTurnException();
-            }
 
             allMoves.Add(pieceMove);
             currentPlayer = currentPlayer == Players.PlayerOne ? Players.PlayerTwo : Players.PlayerOne;
@@ -106,21 +92,21 @@ namespace Chess.Library
             allMoves.RemoveAt(lastIndex);
         }
 
-        internal bool IsCellNotAttacked(int y, int x, PieceColor oppositeColor)
+        internal bool IsCellNotAttacked(int y, int x, Players oppositePlayer)
         {
-            return IsCellAttacked(y, x, oppositeColor) == MoveType.None;
+            return IsCellAttacked(y, x, oppositePlayer) == MoveType.None;
         }
 
-        internal MoveType IsCellAttacked(int y, int x, PieceColor oppositeColor)
+        internal MoveType IsCellAttacked(int y, int x, Players oppositePlayer)
         {
-            var color = oppositeColor == PieceColor.White ? PieceColor.Black : PieceColor.White;
+            var color = oppositePlayer == Players.PlayerOne ? Players.PlayerTwo : Players.PlayerOne;
 
             for (int _y = 0; _y < 8; _y++)
             {
                 for (int _x = 0; _x < 8; _x++)
                 {
                     var piece = board[_y, _x];
-                    if (piece != null && piece.Color == color)
+                    if (piece != null && piece.Owner == color)
                     {
                         var moves = piece.GetAvailableMoves(this);
                         var move = moves[y][x];
@@ -133,15 +119,15 @@ namespace Chess.Library
             return MoveType.None;
         }
 
-        public bool GetCheck(PieceColor color)
+        public bool GetCheck(Players owner)
         {
-            if (color == PieceColor.White)
-                return WhiteCheck;
+            if (owner == Players.PlayerOne)
+                return PlayerOneCheck;
 
-            return BlackCheck;
+            return PlayerTwoCheck;
         }
 
-        public bool WhiteCheck
+        public bool PlayerOneCheck
         {
             get
             {
@@ -149,7 +135,7 @@ namespace Chess.Library
             }
         }
 
-        public bool BlackCheck
+        public bool PlayerTwoCheck
         {
             get
             {

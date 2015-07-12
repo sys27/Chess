@@ -12,14 +12,14 @@ namespace Chess.Library.Pieces
 
         private bool isMoved;
 
-        public Rook(PieceColor color)
-            : base(color) { }
+        public Rook(Players owner)
+            : base(owner) { }
 
-        public Rook(BoardPoint coordinates, PieceColor color)
-            : base(coordinates, color) { }
+        public Rook(BoardPoint coordinates, Players owner)
+            : base(coordinates, owner) { }
 
-        public Rook(int y, int x, PieceColor color)
-            : base(y, x, color) { }
+        public Rook(int y, int x, Players owner)
+            : base(y, x, owner) { }
 
         public override string ToString()
         {
@@ -38,7 +38,7 @@ namespace Chess.Library.Pieces
             for (int i = 0; i < 8; i++)
                 result[i] = new MoveType[8];
 
-            if (!game.GetCheck(color))
+            if (!game.GetCheck(owner))
             {
                 // left
                 for (int i = coordinates.X - 1; i >= 0; i--)
@@ -46,7 +46,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (piece.Color != color)
+                        if (piece.Owner != owner)
                         {
                             if (piece is King)
                                 result[coordinates.Y][i] = MoveType.Check;
@@ -68,7 +68,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (piece.Color != color)
+                        if (piece.Owner != owner)
                         {
                             if (piece is King)
                                 result[coordinates.Y][i] = MoveType.Check;
@@ -90,7 +90,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
-                        if (piece.Color != color)
+                        if (piece.Owner != owner)
                         {
                             if (piece is King)
                                 result[i][coordinates.X] = MoveType.Check;
@@ -112,7 +112,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
-                        if (piece.Color != color)
+                        if (piece.Owner != owner)
                         {
                             if (piece is King)
                                 result[i][coordinates.X] = MoveType.Check;

@@ -12,14 +12,14 @@ namespace Chess.Library.Pieces
 
         private bool isMoved;
 
-        public King(PieceColor color)
-            : base(color) { }
+        public King(Players owner)
+            : base(owner) { }
 
-        public King(BoardPoint coordinates, PieceColor color)
-            : base(coordinates, color) { }
+        public King(BoardPoint coordinates, Players owner)
+            : base(coordinates, owner) { }
 
-        public King(int y, int x, PieceColor color)
-            : base(y, x, color) { }
+        public King(int y, int x, Players owner)
+            : base(y, x, owner) { }
 
         public override string ToString()
         {
@@ -34,12 +34,12 @@ namespace Chess.Library.Pieces
 
         private void CheckCell(int y, int x, MoveType[][] result, Game game)
         {
-            if (game.IsCellNotAttacked(y, x, color))
+            if (game.IsCellNotAttacked(y, x, owner))
             {
                 var piece = game.GameBoard[y, x];
                 if (piece != null)
                 {
-                    if (piece.Color == color)
+                    if (piece.Owner == owner)
                         result[y][x] = MoveType.Protect;
                     else
                         result[y][x] = MoveType.Kill;

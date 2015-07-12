@@ -21,9 +21,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_LeftMove()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[4, 1] = new Pawn(PieceColor.White);
+            game.GameBoard[4, 1] = new Pawn(Players.PlayerOne);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -36,9 +36,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_LeftKill()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[4, 1] = new Pawn(PieceColor.Black);
+            game.GameBoard[4, 1] = new Pawn(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -51,9 +51,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_LeftCheck()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[4, 1] = new King(PieceColor.Black);
+            game.GameBoard[4, 1] = new King(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -66,9 +66,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_RightMove()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[4, 6] = new Pawn(PieceColor.White);
+            game.GameBoard[4, 6] = new Pawn(Players.PlayerOne);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -80,9 +80,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_RightKill()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[4, 6] = new Pawn(PieceColor.Black);
+            game.GameBoard[4, 6] = new Pawn(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -94,9 +94,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_RightCheck()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[4, 6] = new King(PieceColor.Black);
+            game.GameBoard[4, 6] = new King(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -108,9 +108,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_UpMove()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[1, 4] = new Pawn(PieceColor.White);
+            game.GameBoard[1, 4] = new Pawn(Players.PlayerOne);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -123,9 +123,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_UpKill()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[1, 4] = new Pawn(PieceColor.Black);
+            game.GameBoard[1, 4] = new Pawn(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -138,9 +138,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_UpCheck()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[1, 4] = new King(PieceColor.Black);
+            game.GameBoard[1, 4] = new King(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -153,9 +153,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_DownMove()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[6, 4] = new Pawn(PieceColor.White);
+            game.GameBoard[6, 4] = new Pawn(Players.PlayerOne);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -167,9 +167,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_DownKill()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[6, 4] = new Pawn(PieceColor.Black);
+            game.GameBoard[6, 4] = new Pawn(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 
@@ -181,9 +181,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_DownCheck()
         {
-            var rook = new Rook(PieceColor.White);
+            var rook = new Rook(Players.PlayerOne);
             game.GameBoard[4, 4] = rook;
-            game.GameBoard[6, 4] = new King(PieceColor.Black);
+            game.GameBoard[6, 4] = new King(Players.PlayerTwo);
 
             var moves = rook.GetAvailableMoves(game);
 

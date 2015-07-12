@@ -12,14 +12,14 @@ namespace Chess.Library.Pieces
 
         private bool isMoved;
 
-        public Pawn(PieceColor color)
-            : base(color) { }
+        public Pawn(Players owner)
+            : base(owner) { }
 
-        public Pawn(BoardPoint coordinates, PieceColor color)
-            : base(coordinates, color) { }
+        public Pawn(BoardPoint coordinates, Players owner)
+            : base(coordinates, owner) { }
 
-        public Pawn(int y, int x, PieceColor color)
-            : base(y, x, color) { }
+        public Pawn(int y, int x, Players owner)
+            : base(y, x, owner) { }
 
         public override string ToString()
         {
@@ -43,9 +43,9 @@ namespace Chess.Library.Pieces
             var y = coordinates.Y;
             var x = coordinates.X;
 
-            if (color == PieceColor.White)
+            if (owner == Players.PlayerOne)
             {
-                if (!game.WhiteCheck)
+                if (!game.PlayerOneCheck)
                 {
                     if (y - 1 >= 0 && game.GameBoard[y - 1, x] == null)
                     {
@@ -60,7 +60,7 @@ namespace Chess.Library.Pieces
                         var piece = game.GameBoard[y - 1, x - 1];
                         if (piece != null)
                         {
-                            if (piece.Color != color)
+                            if (piece.Owner != owner)
                             {
                                 if (piece is King)
                                     result[y - 1][x - 1] = MoveType.Check;
@@ -82,7 +82,7 @@ namespace Chess.Library.Pieces
                         var piece = game.GameBoard[y - 1, x + 1];
                         if (piece != null)
                         {
-                            if (piece.Color != color)
+                            if (piece.Owner != owner)
                             {
                                 if (piece is King)
                                     result[y - 1][x + 1] = MoveType.Check;
@@ -107,7 +107,7 @@ namespace Chess.Library.Pieces
             }
             else
             {
-                if (!game.BlackCheck)
+                if (!game.PlayerTwoCheck)
                 {
                     if (y + 1 >= 0 && game.GameBoard[y + 1, x] == null)
                     {
@@ -122,7 +122,7 @@ namespace Chess.Library.Pieces
                         var piece = game.GameBoard[y + 1, x - 1];
                         if (piece != null)
                         {
-                            if (piece.Color != color)
+                            if (piece.Owner != owner)
                             {
                                 if (piece is King)
                                     result[y + 1][x - 1] = MoveType.Check;
@@ -144,7 +144,7 @@ namespace Chess.Library.Pieces
                         var piece = game.GameBoard[y + 1, x + 1];
                         if (piece != null)
                         {
-                            if (piece.Color != color)
+                            if (piece.Owner != owner)
                             {
                                 if (piece is King)
                                     result[y + 1][x + 1] = MoveType.Check;

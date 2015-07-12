@@ -12,6 +12,8 @@ namespace Chess.Library
     public class GameTurnException : Exception
     {
 
+        // todo: add info about move
+
         public GameTurnException() { }
 
         public GameTurnException(string message) : base(message) { }

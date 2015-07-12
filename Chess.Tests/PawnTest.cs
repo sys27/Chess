@@ -21,7 +21,7 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_BlackAllMove()
         {
-            var pawn = new Pawn(PieceColor.Black);
+            var pawn = new Pawn(Players.PlayerTwo);
             game.GameBoard[4, 4] = pawn;
 
             var moves = pawn.GetAvailableMoves(game);
@@ -37,7 +37,7 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_BlackStartMove()
         {
-            var pawn = new Pawn(PieceColor.Black);
+            var pawn = new Pawn(Players.PlayerTwo);
             game.GameBoard[1, 0] = pawn;
 
             var moves = pawn.GetAvailableMoves(game);
@@ -50,7 +50,7 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_BlackMove()
         {
-            var pawn = new Pawn(PieceColor.Black) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerTwo) { IsMoved = true };
             game.GameBoard[4, 0] = pawn;
 
             var moves = pawn.GetAvailableMoves(game);
@@ -63,10 +63,10 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_BlackKill()
         {
-            var pawn = new Pawn(PieceColor.Black) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerTwo) { IsMoved = true };
             game.GameBoard[4, 4] = pawn;
-            game.GameBoard[5, 3] = new Pawn(PieceColor.White) { IsMoved = true };
-            game.GameBoard[5, 5] = new Pawn(PieceColor.White) { IsMoved = true };
+            game.GameBoard[5, 3] = new Pawn(Players.PlayerOne) { IsMoved = true };
+            game.GameBoard[5, 5] = new Pawn(Players.PlayerOne) { IsMoved = true };
 
             var moves = pawn.GetAvailableMoves(game);
 
@@ -81,9 +81,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_BlackLeftCheck()
         {
-            var pawn = new Pawn(PieceColor.Black) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerTwo) { IsMoved = true };
             game.GameBoard[4, 4] = pawn;
-            game.GameBoard[5, 3] = new King(PieceColor.White);
+            game.GameBoard[5, 3] = new King(Players.PlayerOne);
 
             var moves = pawn.GetAvailableMoves(game);
 
@@ -97,9 +97,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_BlackRightCheck()
         {
-            var pawn = new Pawn(PieceColor.Black) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerTwo) { IsMoved = true };
             game.GameBoard[4, 4] = pawn;
-            game.GameBoard[5, 5] = new King(PieceColor.White);
+            game.GameBoard[5, 5] = new King(Players.PlayerOne);
 
             var moves = pawn.GetAvailableMoves(game);
 
@@ -113,7 +113,7 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_WhiteAllMove()
         {
-            var pawn = new Pawn(PieceColor.White);
+            var pawn = new Pawn(Players.PlayerOne);
             game.GameBoard[4, 4] = pawn;
 
             var moves = pawn.GetAvailableMoves(game);
@@ -129,7 +129,7 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_WhiteStartMove()
         {
-            var pawn = new Pawn(PieceColor.White);
+            var pawn = new Pawn(Players.PlayerOne);
             game.GameBoard[6, 0] = pawn;
 
             var moves = pawn.GetAvailableMoves(game);
@@ -142,7 +142,7 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_WhiteMove()
         {
-            var pawn = new Pawn(PieceColor.White) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerOne) { IsMoved = true };
             game.GameBoard[4, 0] = pawn;
 
             var moves = pawn.GetAvailableMoves(game);
@@ -155,10 +155,10 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_WhiteKill()
         {
-            var pawn = new Pawn(PieceColor.White) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerOne) { IsMoved = true };
             game.GameBoard[4, 4] = pawn;
-            game.GameBoard[3, 3] = new Pawn(PieceColor.Black) { IsMoved = true };
-            game.GameBoard[3, 5] = new Pawn(PieceColor.Black) { IsMoved = true };
+            game.GameBoard[3, 3] = new Pawn(Players.PlayerTwo) { IsMoved = true };
+            game.GameBoard[3, 5] = new Pawn(Players.PlayerTwo) { IsMoved = true };
 
             var moves = pawn.GetAvailableMoves(game);
 
@@ -173,9 +173,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_WhiteLeftCheck()
         {
-            var pawn = new Pawn(PieceColor.White) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerOne) { IsMoved = true };
             game.GameBoard[4, 4] = pawn;
-            game.GameBoard[3, 3] = new King(PieceColor.Black);
+            game.GameBoard[3, 3] = new King(Players.PlayerTwo);
 
             var moves = pawn.GetAvailableMoves(game);
 
@@ -189,9 +189,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_WhiteRightCheck()
         {
-            var pawn = new Pawn(PieceColor.White) { IsMoved = true };
+            var pawn = new Pawn(Players.PlayerOne) { IsMoved = true };
             game.GameBoard[4, 4] = pawn;
-            game.GameBoard[3, 5] = new King(PieceColor.Black);
+            game.GameBoard[3, 5] = new King(Players.PlayerTwo);
 
             var moves = pawn.GetAvailableMoves(game);
 
@@ -205,9 +205,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_BlackStartJump()
         {
-            var pawn = new Pawn(PieceColor.Black);
+            var pawn = new Pawn(Players.PlayerTwo);
             game.GameBoard[1, 0] = pawn;
-            game.GameBoard[2, 0] = new Pawn(PieceColor.White);
+            game.GameBoard[2, 0] = new Pawn(Players.PlayerOne);
 
             var moves = pawn.GetAvailableMoves(game);
 

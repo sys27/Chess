@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace Chess.Library
 {
 
-    public struct BoardPoint
+    public struct BoardPoint : IEquatable<BoardPoint>
     {
 
-        private int x;
-        private int y;
+        private readonly int x;
+        private readonly int y;
 
         public BoardPoint(int y, int x)
         {
@@ -44,18 +44,18 @@ namespace Chess.Library
             return Equals((BoardPoint)obj);
         }
 
-        //public override int GetHashCode()
-        //{
-        //    unchecked
-        //    {
-        //        int hash = 47087;
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 47087;
 
-        //        hash = hash * 22343 + x.GetHashCode();
-        //        hash = hash & 22343 + y.GetHashCode();
+                hash = hash * 22343 + x.GetHashCode();
+                hash = hash & 22343 + y.GetHashCode();
 
-        //        return hash;
-        //    }
-        //}
+                return hash;
+            }
+        }
 
         public override string ToString()
         {
@@ -68,10 +68,6 @@ namespace Chess.Library
             {
                 return x;
             }
-            set
-            {
-                x = value;
-            }
         }
 
         public int Y
@@ -79,10 +75,6 @@ namespace Chess.Library
             get
             {
                 return y;
-            }
-            set
-            {
-                y = value;
             }
         }
 

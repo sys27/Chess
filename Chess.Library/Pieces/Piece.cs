@@ -11,18 +11,18 @@ namespace Chess.Library.Pieces
     {
 
         protected BoardPoint coordinates;
-        protected PieceColor color;
+        protected Players owner;
 
-        protected Piece(PieceColor color)
-            : this(new BoardPoint(), color) { }
+        protected Piece(Players owner)
+            : this(new BoardPoint(), owner) { }
 
-        protected Piece(BoardPoint coordinates, PieceColor color)
+        protected Piece(BoardPoint coordinates, Players owner)
         {
             this.coordinates = coordinates;
-            this.color = color;
+            this.owner = owner;
         }
 
-        protected Piece(int y, int x, PieceColor color)
+        protected Piece(int y, int x, Players color)
             : this(new BoardPoint(y, x), color) { }
 
         public override bool Equals(object obj)
@@ -34,12 +34,12 @@ namespace Chess.Library.Pieces
                 return false;
 
             var piece = (Piece)obj;
-            return coordinates == piece.coordinates && color == piece.color;
+            return coordinates == piece.coordinates && owner == piece.owner;
         }
 
         protected string ToString(string pieceName)
         {
-            return string.Format("{0}: {1}, {2} ({3})", pieceName, coordinates.Y.ToString(), coordinates.X.ToString(), color.ToString());
+            return string.Format("{0}: {1}, {2} ({3})", pieceName, coordinates.Y.ToString(), coordinates.X.ToString(), owner.ToString());
         }
 
         public abstract MoveType CanMove(Game game, int y, int x);
@@ -63,11 +63,11 @@ namespace Chess.Library.Pieces
             }
         }
 
-        public PieceColor Color
+        public Players Owner
         {
             get
             {
-                return color;
+                return owner;
             }
         }
 

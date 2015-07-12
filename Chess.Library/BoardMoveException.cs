@@ -12,6 +12,8 @@ namespace Chess.Library
     public class BoardMoveException : Exception
     {
 
+        // todo: add info about positions
+
         public BoardMoveException() { }
 
         public BoardMoveException(string message) : base(message) { }

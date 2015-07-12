@@ -21,7 +21,7 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_All()
         {
-            var knight = new Knight(PieceColor.White);
+            var knight = new Knight(Players.PlayerOne);
             game.GameBoard[4, 4] = knight;
 
             var moves = knight.GetAvailableMoves(game);
@@ -42,9 +42,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves()
         {
-            var knight = new Knight(PieceColor.White);
+            var knight = new Knight(Players.PlayerOne);
             game.GameBoard[4, 4] = knight;
-            game.GameBoard[6, 3] = new Pawn(PieceColor.White);
+            game.GameBoard[6, 3] = new Pawn(Players.PlayerOne);
 
             var moves = knight.GetAvailableMoves(game);
 
@@ -64,9 +64,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_Kill()
         {
-            var knight = new Knight(PieceColor.White);
+            var knight = new Knight(Players.PlayerOne);
             game.GameBoard[4, 4] = knight;
-            game.GameBoard[6, 3] = new Pawn(PieceColor.Black);
+            game.GameBoard[6, 3] = new Pawn(Players.PlayerTwo);
 
             var moves = knight.GetAvailableMoves(game);
 
@@ -86,9 +86,9 @@ namespace Chess.Tests
         [TestMethod]
         public void GetAvailableMoves_Check()
         {
-            var knight = new Knight(PieceColor.White);
+            var knight = new Knight(Players.PlayerOne);
             game.GameBoard[4, 4] = knight;
-            game.GameBoard[6, 3] = new King(PieceColor.Black);
+            game.GameBoard[6, 3] = new King(Players.PlayerTwo);
 
             var moves = knight.GetAvailableMoves(game);
 
