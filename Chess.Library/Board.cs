@@ -16,7 +16,7 @@ namespace Chess.Library
         public Board()
             : this(false) { }
 
-        private Board(bool isEmpty)
+        public Board(bool isEmpty)
         {
             InitializeBoard(isEmpty);
         }

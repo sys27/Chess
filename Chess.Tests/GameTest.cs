@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Chess.Library;
 using System.Linq;
+using Chess.Library.Pieces;
 
 namespace Chess.Tests
 {
@@ -36,7 +37,7 @@ namespace Chess.Tests
 
         [TestMethod]
         [ExpectedException(typeof(GameTurnException))]
-        public void WrangPlayerTurn()
+        public void WrongPlayerTurn()
         {
             var whitePawn = game.GameBoard[6, 0];
             game.Turn(6, 0, 4, 0);
@@ -115,6 +116,33 @@ namespace Chess.Tests
             Assert.IsNull(game.GameBoard[6, 4]);
             Assert.AreEqual(whitePawn, game.GameBoard[4, 4]);
             Assert.AreEqual(blackPawn, game.GameBoard[1, 3]);
+        }
+
+        [TestMethod]
+        public void CheckPlayerOneTest()
+        {
+            var board = new Board(true);
+            board[4, 4] = new King(Players.PlayerOne);
+            board[5, 1] = new Rook(Players.PlayerTwo);
+
+            var game = new Game(board);
+            game.Turn(4, 4, 4, 5);
+            game.Turn(5, 1, 4, 1);
+
+            Assert.IsTrue(game.PlayerOneCheck);
+        }
+
+        [TestMethod]
+        public void CheckPlayerTwoTest()
+        {
+            var board = new Board(true);
+            board[4, 4] = new King(Players.PlayerTwo);
+            board[5, 1] = new Rook(Players.PlayerOne);
+
+            var game = new Game(board);
+            game.Turn(5, 1, 4, 1);
+
+            Assert.IsTrue(game.PlayerOneCheck);
         }
 
     }

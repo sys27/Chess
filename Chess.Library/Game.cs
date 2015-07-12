@@ -12,8 +12,8 @@ namespace Chess.Library
     {
 
         private Board board;
-        private bool whiteCheck;
-        private bool blackCheck;
+        private bool playerOneCheck;
+        private bool playerTwoCheck;
 
         private bool undoable = true;
         private Players currentPlayer;
@@ -131,7 +131,7 @@ namespace Chess.Library
         {
             get
             {
-                return whiteCheck;
+                return playerOneCheck;
             }
         }
 
@@ -139,7 +139,7 @@ namespace Chess.Library
         {
             get
             {
-                return blackCheck;
+                return playerTwoCheck;
             }
         }
 
