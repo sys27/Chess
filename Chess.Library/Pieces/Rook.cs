@@ -6,8 +6,6 @@ namespace Chess.Library.Pieces
     public class Rook : Piece
     {
 
-        private bool isMoved;
-
         public Rook(Players owner)
             : base(owner) { }
 
@@ -130,18 +128,6 @@ namespace Chess.Library.Pieces
             }
 
             return result;
-        }
-
-        public bool IsMoved
-        {
-            get
-            {
-                return isMoved;
-            }
-            set
-            {
-                isMoved = value;
-            }
         }
 
     }

@@ -6,8 +6,6 @@ namespace Chess.Library.Pieces
     public class Pawn : Piece
     {
 
-        private bool isMoved;
-
         public Pawn(Players owner)
             : base(owner) { }
 
@@ -165,18 +163,6 @@ namespace Chess.Library.Pieces
             }
 
             return result;
-        }
-
-        public bool IsMoved
-        {
-            get
-            {
-                return isMoved;
-            }
-            set
-            {
-                isMoved = value;
-            }
         }
 
     }

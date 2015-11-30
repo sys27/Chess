@@ -8,9 +8,11 @@ namespace Chess.Library.Pieces
 
         protected BoardPoint coordinates;
         protected readonly Players owner;
+        protected bool isMoved;
 
         protected Piece(Players owner)
-            : this(new BoardPoint(), owner) { }
+            : this(new BoardPoint(), owner)
+        { }
 
         protected Piece(BoardPoint coordinates, Players owner)
         {
@@ -19,7 +21,8 @@ namespace Chess.Library.Pieces
         }
 
         protected Piece(int y, int x, Players color)
-            : this(new BoardPoint(y, x), color) { }
+            : this(new BoardPoint(y, x), color)
+        { }
 
         public override bool Equals(object obj)
         {
@@ -64,6 +67,18 @@ namespace Chess.Library.Pieces
             get
             {
                 return owner;
+            }
+        }
+
+        public bool IsMoved
+        {
+            get
+            {
+                return isMoved;
+            }
+            set
+            {
+                isMoved = value;
             }
         }
 

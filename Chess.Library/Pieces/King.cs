@@ -6,8 +6,6 @@ namespace Chess.Library.Pieces
     public class King : Piece
     {
 
-        private bool isMoved;
-
         public King(Players owner)
             : base(owner) { }
 
@@ -84,18 +82,6 @@ namespace Chess.Library.Pieces
             }
 
             return result;
-        }
-
-        public bool IsMoved
-        {
-            get
-            {
-                return isMoved;
-            }
-            set
-            {
-                isMoved = value;
-            }
         }
 
     }
