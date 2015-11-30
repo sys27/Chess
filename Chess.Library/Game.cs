@@ -8,10 +8,8 @@ namespace Chess.Library
     {
 
         private Board board;
-        private bool playerOneCheck;
-        private bool playerTwoCheck;
 
-        private bool undoable = true;
+        private bool undoable;
         private Players currentPlayer;
 
         private List<PieceMove> allMoves;
@@ -24,6 +22,7 @@ namespace Chess.Library
             this.board = board;
             this.allMoves = new List<PieceMove>();
             this.currentPlayer = Players.PlayerOne;
+            this.undoable = true;
         }
 
         public void Turn(int fromY, int fromX, int toY, int toX)
@@ -58,6 +57,7 @@ namespace Chess.Library
                 throw new GameTurnException();
 
             allMoves.Add(pieceMove);
+
             currentPlayer = currentPlayer == Players.PlayerOne ? Players.PlayerTwo : Players.PlayerOne;
         }
 
@@ -117,26 +117,8 @@ namespace Chess.Library
 
         public bool GetCheck(Players owner)
         {
-            if (owner == Players.PlayerOne)
-                return PlayerOneCheck;
-
-            return PlayerTwoCheck;
-        }
-
-        public bool PlayerOneCheck
-        {
-            get
-            {
-                return playerOneCheck;
-            }
-        }
-
-        public bool PlayerTwoCheck
-        {
-            get
-            {
-                return playerTwoCheck;
-            }
+            // todo: !!!
+            return false;
         }
 
         public Board GameBoard

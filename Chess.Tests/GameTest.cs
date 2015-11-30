@@ -129,7 +129,7 @@ namespace Chess.Tests
             game.Turn(4, 4, 4, 5);
             game.Turn(5, 1, 4, 1);
 
-            Assert.IsTrue(game.PlayerOneCheck);
+            Assert.IsTrue(game.GetCheck(Players.PlayerOne));
         }
 
         [TestMethod]
@@ -142,7 +142,7 @@ namespace Chess.Tests
             var game = new Game(board);
             game.Turn(5, 1, 4, 1);
 
-            Assert.IsTrue(game.PlayerOneCheck);
+            Assert.IsTrue(game.GetCheck(Players.PlayerTwo));
         }
 
     }

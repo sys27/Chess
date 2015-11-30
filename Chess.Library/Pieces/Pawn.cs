@@ -6,14 +6,11 @@ namespace Chess.Library.Pieces
     public class Pawn : Piece
     {
 
-        public Pawn(Players owner)
-            : base(owner) { }
+        public Pawn(Players owner) : base(owner) { }
 
-        public Pawn(BoardPoint coordinates, Players owner)
-            : base(coordinates, owner) { }
+        public Pawn(BoardPoint coordinates, Players owner) : base(coordinates, owner) { }
 
-        public Pawn(int y, int x, Players owner)
-            : base(y, x, owner) { }
+        public Pawn(int y, int x, Players owner) : base(y, x, owner) { }
 
         public override string ToString()
         {
@@ -39,7 +36,7 @@ namespace Chess.Library.Pieces
 
             if (owner == Players.PlayerOne)
             {
-                if (!game.PlayerOneCheck)
+                if (!game.GetCheck(Players.PlayerOne))
                 {
                     if (y - 1 >= 0 && game.GameBoard[y - 1, x] == null)
                     {
@@ -71,7 +68,7 @@ namespace Chess.Library.Pieces
                             result[y - 1][x - 1] = MoveType.GhostKill;
                         }
                     }
-                    if (y - 1 >= 0 && x + 1 >= 0)
+                    if (y - 1 >= 0 && x + 1 <= 7)
                     {
                         var piece = game.GameBoard[y - 1, x + 1];
                         if (piece != null)
@@ -101,7 +98,7 @@ namespace Chess.Library.Pieces
             }
             else
             {
-                if (!game.PlayerTwoCheck)
+                if (!game.GetCheck(Players.PlayerTwo))
                 {
                     if (y + 1 >= 0 && game.GameBoard[y + 1, x] == null)
                     {
@@ -133,7 +130,7 @@ namespace Chess.Library.Pieces
                             result[y + 1][x - 1] = MoveType.GhostKill;
                         }
                     }
-                    if (y + 1 >= 0 && x + 1 >= 0)
+                    if (y + 1 >= 0 && x + 1 <= 7)
                     {
                         var piece = game.GameBoard[y + 1, x + 1];
                         if (piece != null)

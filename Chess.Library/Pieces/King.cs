@@ -20,12 +20,6 @@ namespace Chess.Library.Pieces
             return base.ToString("King");
         }
 
-        public override MoveType CanMove(Game game, int y, int x)
-        {
-            // todo: reimplement
-            return GetAvailableMoves(game)[y][x];
-        }
-
         private void CheckCell(int y, int x, MoveType[][] result, Game game)
         {
             if (game.IsCellNotAttacked(y, x, owner))
@@ -43,6 +37,12 @@ namespace Chess.Library.Pieces
                     result[y][x] = MoveType.Move;
                 }
             }
+        }
+
+        public override MoveType CanMove(Game game, int y, int x)
+        {
+            // todo: reimplement
+            return GetAvailableMoves(game)[y][x];
         }
 
         public override MoveType[][] GetAvailableMoves(Game game)
