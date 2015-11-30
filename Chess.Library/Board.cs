@@ -9,12 +9,16 @@ namespace Chess.Library
 
         private Piece[][] board;
 
-        public Board()
-            : this(false) { }
+        public Board() : this(false) { }
 
         public Board(bool isEmpty)
         {
             InitializeBoard(isEmpty);
+        }
+
+        public static Board CreateEmpty()
+        {
+            return new Board(true);
         }
 
         public Piece this[int y, int x]
@@ -138,11 +142,6 @@ namespace Chess.Library
         {
             this[from] = this[to];
             this[to] = piece;
-        }
-
-        public static Board CreateEmpty()
-        {
-            return new Board(true);
         }
 
     }
