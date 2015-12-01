@@ -8,6 +8,8 @@ namespace Chess.Library
     {
 
         private Piece[][] board;
+        private King kingOne;
+        private King kingTwo;
 
         public Board() : this(false) { }
 
@@ -31,6 +33,26 @@ namespace Chess.Library
             {
                 if (value != null)
                     value.Coordinates = new BoardPoint(y, x);
+
+                var king = value as King;
+                if (king != null)
+                {
+                    if (king.Owner == Players.PlayerOne)
+                    {
+                        if (kingOne != null)
+                            board[kingOne.Coordinates.Y][kingOne.Coordinates.X] = null;
+
+                        kingOne = king;
+                    }
+                    else if (king.Owner == Players.PlayerTwo)
+                    {
+                        if (kingTwo != null)
+                            board[kingTwo.Coordinates.Y][kingTwo.Coordinates.X] = null;
+
+                        kingTwo = king;
+                    }
+                }
+
                 board[y][x] = value;
             }
         }
@@ -142,6 +164,22 @@ namespace Chess.Library
         {
             this[from] = this[to];
             this[to] = piece;
+        }
+
+        public King KingOne
+        {
+            get
+            {
+                return kingOne;
+            }
+        }
+
+        public King KingTwo
+        {
+            get
+            {
+                return kingTwo;
+            }
         }
 
     }

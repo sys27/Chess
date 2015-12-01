@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Chess.Library.Pieces;
+using System;
 using System.Collections.Generic;
 
 namespace Chess.Library
@@ -11,11 +12,11 @@ namespace Chess.Library
 
         private bool undoable;
         private Players currentPlayer;
+        private Players? kingChecked;
 
         private List<PieceMove> allMoves;
 
-        public Game()
-            : this(new Board()) { }
+        public Game() : this(new Board()) { }
 
         public Game(Board board)
         {
@@ -55,6 +56,14 @@ namespace Chess.Library
             else
                 // todo: ...
                 throw new GameTurnException();
+
+            var kingOne = board.KingOne;
+            if (kingOne != null)
+                kingChecked = IsCellAttacked(kingOne.Coordinates.Y, kingOne.Coordinates.X, kingOne.Owner) == MoveType.None ? (Players?)null : kingOne.Owner;
+
+            var kingTwo = board.KingTwo;
+            if (kingTwo != null)
+                kingChecked = IsCellAttacked(kingTwo.Coordinates.Y, kingTwo.Coordinates.X, kingTwo.Owner) == MoveType.None ? (Players?)null : kingTwo.Owner;
 
             allMoves.Add(pieceMove);
 
@@ -102,7 +111,7 @@ namespace Chess.Library
                 for (int _x = 0; _x < 8; _x++)
                 {
                     var piece = board[_y, _x];
-                    if (piece != null && piece.Owner == color)
+                    if (piece != null && piece.Owner == color && !(piece is King))
                     {
                         var moves = piece.GetAvailableMoves(this);
                         var move = moves[y][x];
@@ -117,8 +126,7 @@ namespace Chess.Library
 
         public bool GetCheck(Players owner)
         {
-            // todo: !!!
-            return false;
+            return kingChecked == owner;
         }
 
         public Board GameBoard
