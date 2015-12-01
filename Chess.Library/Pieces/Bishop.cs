@@ -7,13 +7,22 @@ namespace Chess.Library.Pieces
     {
 
         public Bishop(Players owner)
-            : base(owner) { }
+            : base(owner)
+        {
+
+        }
 
         public Bishop(BoardPoint coordinates, Players owner)
-            : base(coordinates, owner) { }
+            : base(coordinates, owner)
+        {
+
+        }
 
         public Bishop(int y, int x, Players owner)
-            : base(y, x, owner) { }
+            : base(y, x, owner)
+        {
+
+        }
 
         public override string ToString()
         {
@@ -22,6 +31,66 @@ namespace Chess.Library.Pieces
 
         public override MoveType CanMove(Game game, int y, int x)
         {
+            if (!game.GetCheck(owner))
+            {
+                // a cell is not on diagonal
+                if (Math.Abs(coordinates.Y - y) != Math.Abs(coordinates.X - x))
+                    return MoveType.None;
+
+                Piece piece;
+                if (y < coordinates.Y && x < coordinates.X) // up-left
+                {
+                    for (int _x = coordinates.X - 1, _y = coordinates.Y - 1; _x >= x + 1 && _y >= y + 1; _x--, _y--)
+                    {
+                        piece = game.GameBoard[_y, _x];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+                else if (y < coordinates.Y && x > coordinates.X) // up-right
+                {
+                    for (int _x = coordinates.X + 1, _y = coordinates.Y - 1; _x <= x - 1 && _y >= y + 1; _x++, _y--)
+                    {
+                        piece = game.GameBoard[_y, _x];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+                else if (y > coordinates.Y && x < coordinates.X) // down-left
+                {
+                    for (int _x = coordinates.X - 1, _y = coordinates.Y + 1; _x >= x + 1 && _y <= y - 1; _x--, _y++)
+                    {
+                        piece = game.GameBoard[_y, _x];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+                else if (y > coordinates.Y && x > coordinates.X) // down-right
+                {
+                    for (int _x = coordinates.X + 1, _y = coordinates.Y + 1; _x <= x - 1 && _y <= y - 1; _x++, _y++)
+                    {
+                        piece = game.GameBoard[_y, _x];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+
+                piece = game.GameBoard[y, x];
+                if (piece != null)
+                {
+                    if (piece.Owner == owner)
+                        return MoveType.Protect;
+                    else if (piece is King)
+                        return MoveType.Check;
+                    else
+                        return MoveType.Kill;
+                }
+                else
+                {
+                    return MoveType.None;
+                }
+            }
+
             // todo: reimplement
             return GetAvailableMoves(game)[y][x];
         }
@@ -40,15 +109,13 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
+                        // todo: refactor!!!
+                        if (piece.Owner == owner)
                             result[y][x] = MoveType.Protect;
+                        else if (piece is King)
+                            result[y][x] = MoveType.Check;
+                        else
+                            result[y][x] = MoveType.Kill;
 
                         break;
                     }
@@ -62,15 +129,12 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
+                        if (piece.Owner == owner)
                             result[y][x] = MoveType.Protect;
+                        else if (piece is King)
+                            result[y][x] = MoveType.Check;
+                        else
+                            result[y][x] = MoveType.Kill;
 
                         break;
                     }
@@ -84,15 +148,12 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
+                        if (piece.Owner == owner)
                             result[y][x] = MoveType.Protect;
+                        else if (piece is King)
+                            result[y][x] = MoveType.Check;
+                        else
+                            result[y][x] = MoveType.Kill;
 
                         break;
                     }
@@ -106,15 +167,12 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
+                        if (piece.Owner == owner)
                             result[y][x] = MoveType.Protect;
+                        else if (piece is King)
+                            result[y][x] = MoveType.Check;
+                        else
+                            result[y][x] = MoveType.Kill;
 
                         break;
                     }
