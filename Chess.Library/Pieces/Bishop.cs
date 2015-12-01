@@ -29,6 +29,16 @@ namespace Chess.Library.Pieces
             return base.ToString("Bishop");
         }
 
+        private MoveType CheckPiece(Piece piece)
+        {
+            if (piece.Owner == owner)
+                return MoveType.Protect;
+            else if (piece is King)
+                return MoveType.Check;
+            else
+                return MoveType.Kill;
+        }
+
         public override MoveType CanMove(Game game, int y, int x)
         {
             if (!game.GetCheck(owner))
@@ -76,19 +86,8 @@ namespace Chess.Library.Pieces
                 }
 
                 piece = game.GameBoard[y, x];
-                if (piece != null)
-                {
-                    if (piece.Owner == owner)
-                        return MoveType.Protect;
-                    else if (piece is King)
-                        return MoveType.Check;
-                    else
-                        return MoveType.Kill;
-                }
-                else
-                {
-                    return MoveType.None;
-                }
+
+                return piece != null ? CheckPiece(piece) : MoveType.Move;
             }
 
             // todo: reimplement
@@ -109,13 +108,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        // todo: refactor!!!
-                        if (piece.Owner == owner)
-                            result[y][x] = MoveType.Protect;
-                        else if (piece is King)
-                            result[y][x] = MoveType.Check;
-                        else
-                            result[y][x] = MoveType.Kill;
+                        result[y][x] = CheckPiece(piece);
 
                         break;
                     }
@@ -129,12 +122,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner == owner)
-                            result[y][x] = MoveType.Protect;
-                        else if (piece is King)
-                            result[y][x] = MoveType.Check;
-                        else
-                            result[y][x] = MoveType.Kill;
+                        result[y][x] = CheckPiece(piece);
 
                         break;
                     }
@@ -148,12 +136,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner == owner)
-                            result[y][x] = MoveType.Protect;
-                        else if (piece is King)
-                            result[y][x] = MoveType.Check;
-                        else
-                            result[y][x] = MoveType.Kill;
+                        result[y][x] = CheckPiece(piece);
 
                         break;
                     }
@@ -167,12 +150,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner == owner)
-                            result[y][x] = MoveType.Protect;
-                        else if (piece is King)
-                            result[y][x] = MoveType.Check;
-                        else
-                            result[y][x] = MoveType.Kill;
+                        result[y][x] = CheckPiece(piece);
 
                         break;
                     }
