@@ -32,6 +32,8 @@ namespace Chess.Library.Pieces
             for (int i = 0; i < 8; i++)
                 result[i] = new MoveType[8];
 
+            // todo: Castling
+
             if (!game.GetCheck(owner))
             {
                 // left

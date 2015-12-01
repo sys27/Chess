@@ -38,6 +38,10 @@ namespace Chess.Library
 
         public void Turn(PieceMove pieceMove)
         {
+            if (pieceMove.From == pieceMove.To)
+                // todo: ...
+                throw new GameTurnException();
+
             var piece = board[pieceMove.From];
             if (piece == null)
                 // todo: ...
