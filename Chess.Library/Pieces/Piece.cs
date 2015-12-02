@@ -41,6 +41,16 @@ namespace Chess.Library.Pieces
             return string.Format("{0}: {1}, {2} ({3})", pieceName, coordinates.Y.ToString(), coordinates.X.ToString(), owner.ToString());
         }
 
+        protected MoveType GetMoveTypeByPiece(Piece piece)
+        {
+            if (piece.Owner == owner)
+                return MoveType.Protect;
+            else if (piece is King)
+                return MoveType.Check;
+            else
+                return MoveType.Kill;
+        }
+
         public abstract MoveType CanMove(Game game, int y, int x);
 
         public MoveType CanMove(Game game, BoardPoint to)

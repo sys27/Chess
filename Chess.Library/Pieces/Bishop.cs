@@ -29,16 +29,6 @@ namespace Chess.Library.Pieces
             return base.ToString("Bishop");
         }
 
-        private MoveType CheckPiece(Piece piece)
-        {
-            if (piece.Owner == owner)
-                return MoveType.Protect;
-            else if (piece is King)
-                return MoveType.Check;
-            else
-                return MoveType.Kill;
-        }
-
         public override MoveType CanMove(Game game, int y, int x)
         {
             if (!game.GetCheck(owner))
@@ -87,7 +77,7 @@ namespace Chess.Library.Pieces
 
                 piece = game.GameBoard[y, x];
 
-                return piece != null ? CheckPiece(piece) : MoveType.Move;
+                return piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
             }
 
             // todo: reimplement
@@ -108,7 +98,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        result[y][x] = CheckPiece(piece);
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -122,7 +112,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        result[y][x] = CheckPiece(piece);
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -136,7 +126,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        result[y][x] = CheckPiece(piece);
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -150,7 +140,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        result[y][x] = CheckPiece(piece);
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }

@@ -36,7 +36,7 @@ namespace Chess.Library.Pieces
 
             if (owner == Players.PlayerOne)
             {
-                if (!game.GetCheck(Players.PlayerOne))
+                if (!game.GetCheck(owner))
                 {
                     if (y - 1 >= 0 && game.GameBoard[y - 1, x] == null)
                     {
@@ -49,46 +49,14 @@ namespace Chess.Library.Pieces
                     if (y - 1 >= 0 && x - 1 >= 0)
                     {
                         var piece = game.GameBoard[y - 1, x - 1];
-                        if (piece != null)
-                        {
-                            if (piece.Owner != owner)
-                            {
-                                if (piece is King)
-                                    result[y - 1][x - 1] = MoveType.Check;
-                                else
-                                    result[y - 1][x - 1] = MoveType.Kill;
-                            }
-                            else
-                            {
-                                result[y - 1][x - 1] = MoveType.Protect;
-                            }
-                        }
-                        else
-                        {
-                            result[y - 1][x - 1] = MoveType.GhostKill;
-                        }
+
+                        result[y - 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
                     }
                     if (y - 1 >= 0 && x + 1 <= 7)
                     {
                         var piece = game.GameBoard[y - 1, x + 1];
-                        if (piece != null)
-                        {
-                            if (piece.Owner != owner)
-                            {
-                                if (piece is King)
-                                    result[y - 1][x + 1] = MoveType.Check;
-                                else
-                                    result[y - 1][x + 1] = MoveType.Kill;
-                            }
-                            else
-                            {
-                                result[y - 1][x + 1] = MoveType.Protect;
-                            }
-                        }
-                        else
-                        {
-                            result[y - 1][x + 1] = MoveType.GhostKill;
-                        }
+
+                        result[y - 1][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
                     }
                 }
                 else
@@ -98,7 +66,7 @@ namespace Chess.Library.Pieces
             }
             else
             {
-                if (!game.GetCheck(Players.PlayerTwo))
+                if (!game.GetCheck(owner))
                 {
                     if (y + 1 >= 0 && game.GameBoard[y + 1, x] == null)
                     {
@@ -111,46 +79,14 @@ namespace Chess.Library.Pieces
                     if (y + 1 >= 0 && x - 1 >= 0)
                     {
                         var piece = game.GameBoard[y + 1, x - 1];
-                        if (piece != null)
-                        {
-                            if (piece.Owner != owner)
-                            {
-                                if (piece is King)
-                                    result[y + 1][x - 1] = MoveType.Check;
-                                else
-                                    result[y + 1][x - 1] = MoveType.Kill;
-                            }
-                            else
-                            {
-                                result[y + 1][x - 1] = MoveType.Protect;
-                            }
-                        }
-                        else
-                        {
-                            result[y + 1][x - 1] = MoveType.GhostKill;
-                        }
+
+                        result[y + 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
                     }
                     if (y + 1 >= 0 && x + 1 <= 7)
                     {
                         var piece = game.GameBoard[y + 1, x + 1];
-                        if (piece != null)
-                        {
-                            if (piece.Owner != owner)
-                            {
-                                if (piece is King)
-                                    result[y + 1][x + 1] = MoveType.Check;
-                                else
-                                    result[y + 1][x + 1] = MoveType.Kill;
-                            }
-                            else
-                            {
-                                result[y + 1][x + 1] = MoveType.Protect;
-                            }
-                        }
-                        else
-                        {
-                            result[y + 1][x + 1] = MoveType.GhostKill;
-                        }
+
+                        result[y + 1][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
                     }
                 }
                 else
