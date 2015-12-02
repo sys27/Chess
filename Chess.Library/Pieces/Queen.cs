@@ -2,18 +2,27 @@
 
 namespace Chess.Library.Pieces
 {
-    
+
     public class Queen : Piece
     {
 
         public Queen(Players owner)
-            : base(owner) { }
+            : base(owner)
+        {
+
+        }
 
         public Queen(BoardPoint coordinates, Players owner)
-            : base(coordinates, owner) { }
+            : base(coordinates, owner)
+        {
+
+        }
 
         public Queen(int y, int x, Players owner)
-            : base(y, x, owner) { }
+            : base(y, x, owner)
+        {
+
+        }
 
         public override string ToString()
         {
@@ -40,15 +49,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[coordinates.Y][i] = MoveType.Check;
-                            else
-                                result[coordinates.Y][i] = MoveType.Kill;
-                        }
-                        else
-                            result[coordinates.Y][i] = MoveType.Protect;
+                        result[coordinates.Y][i] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -62,15 +63,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[coordinates.Y, i];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[coordinates.Y][i] = MoveType.Check;
-                            else
-                                result[coordinates.Y][i] = MoveType.Kill;
-                        }
-                        else
-                            result[coordinates.Y][i] = MoveType.Protect;
+                        result[coordinates.Y][i] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -84,15 +77,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[i][coordinates.X] = MoveType.Check;
-                            else
-                                result[i][coordinates.X] = MoveType.Kill;
-                        }
-                        else
-                            result[i][coordinates.X] = MoveType.Protect;
+                        result[i][coordinates.X] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -106,15 +91,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[i, coordinates.X];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[i][coordinates.X] = MoveType.Check;
-                            else
-                                result[i][coordinates.X] = MoveType.Kill;
-                        }
-                        else
-                            result[i][coordinates.X] = MoveType.Protect;
+                        result[i][coordinates.X] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -128,15 +105,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
-                            result[y][x] = MoveType.Protect;
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -150,15 +119,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
-                            result[y][x] = MoveType.Protect;
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -172,15 +133,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
-                            result[y][x] = MoveType.Protect;
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }
@@ -194,15 +147,7 @@ namespace Chess.Library.Pieces
                     var piece = game.GameBoard[y, x];
                     if (piece != null)
                     {
-                        if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y][x] = MoveType.Check;
-                            else
-                                result[y][x] = MoveType.Kill;
-                        }
-                        else
-                            result[y][x] = MoveType.Protect;
+                        result[y][x] = GetMoveTypeByPiece(piece);
 
                         break;
                     }

@@ -7,13 +7,22 @@ namespace Chess.Library.Pieces
     {
 
         public Knight(Players owner)
-            : base(owner) { }
+            : base(owner)
+        {
+
+        }
 
         public Knight(BoardPoint coordinates, Players owner)
-            : base(coordinates, owner) { }
+            : base(coordinates, owner)
+        {
+
+        }
 
         public Knight(int y, int x, Players owner)
-            : base(y, x, owner) { }
+            : base(y, x, owner)
+        {
+
+        }
 
         public override string ToString()
         {
@@ -42,40 +51,14 @@ namespace Chess.Library.Pieces
                     if (x + 1 < 8)
                     {
                         var piece = game.GameBoard[y + 2, x + 1];
-                        if (piece == null)
-                        {
-                            result[y + 2][x + 1] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y + 2][x + 1] = MoveType.Check;
-                            else
-                                result[y + 2][x + 1] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y + 2][x + 1] = MoveType.Protect;
-                        }
+
+                        result[y + 2][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                     if (x - 1 >= 0)
                     {
                         var piece = game.GameBoard[y + 2, x - 1];
-                        if (piece == null)
-                        {
-                            result[y + 2][x - 1] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y + 2][x - 1] = MoveType.Check;
-                            else
-                                result[y + 2][x - 1] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y + 2][x - 1] = MoveType.Protect;
-                        }
+
+                        result[y + 2][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                 }
 
@@ -84,40 +67,14 @@ namespace Chess.Library.Pieces
                     if (x + 2 < 8)
                     {
                         var piece = game.GameBoard[y + 1, x + 2];
-                        if (piece == null)
-                        {
-                            result[y + 1][x + 2] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y + 1][x + 2] = MoveType.Kill;
-                            else
-                                result[y + 1][x + 2] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y + 1][x + 2] = MoveType.Protect;
-                        }
+
+                        result[y + 1][x + 2] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                     if (x - 2 >= 0)
                     {
                         var piece = game.GameBoard[y + 1, x - 2];
-                        if (piece == null)
-                        {
-                            result[y + 1][x - 2] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y + 1][x - 2] = MoveType.Check;
-                            else
-                                result[y + 1][x - 2] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y + 1][x - 2] = MoveType.Protect;
-                        }
+
+                        result[y + 1][x - 2] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                 }
 
@@ -126,40 +83,14 @@ namespace Chess.Library.Pieces
                     if (x + 2 < 8)
                     {
                         var piece = game.GameBoard[y - 1, x + 2];
-                        if (piece == null)
-                        {
-                            result[y - 1][x + 2] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y - 1][x + 2] = MoveType.Check;
-                            else
-                                result[y - 1][x + 2] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y - 1][x + 2] = MoveType.Protect;
-                        }
+
+                        result[y - 1][x + 2] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                     if (x - 2 >= 0)
                     {
                         var piece = game.GameBoard[y - 1, x - 2];
-                        if (piece == null)
-                        {
-                            result[y - 1][x - 2] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y - 1][x - 2] = MoveType.Check;
-                            else
-                                result[y - 1][x - 2] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y - 1][x - 2] = MoveType.Protect;
-                        }
+
+                        result[y - 1][x - 2] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                 }
 
@@ -168,40 +99,14 @@ namespace Chess.Library.Pieces
                     if (x + 1 < 8)
                     {
                         var piece = game.GameBoard[y - 2, x + 1];
-                        if (piece == null)
-                        {
-                            result[y - 2][x + 1] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y - 2][x + 1] = MoveType.Check;
-                            else
-                                result[y - 2][x + 1] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y - 2][x + 1] = MoveType.Protect;
-                        }
+
+                        result[y - 2][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                     if (x - 1 >= 0)
                     {
                         var piece = game.GameBoard[y - 2, x - 1];
-                        if (piece == null)
-                        {
-                            result[y - 2][x - 1] = MoveType.Move;
-                        }
-                        else if (piece.Owner != owner)
-                        {
-                            if (piece is King)
-                                result[y - 2][x - 1] = MoveType.Check;
-                            else
-                                result[y - 2][x - 1] = MoveType.Kill;
-                        }
-                        else
-                        {
-                            result[y - 2][x - 1] = MoveType.Protect;
-                        }
+
+                        result[y - 2][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
                     }
                 }
             }

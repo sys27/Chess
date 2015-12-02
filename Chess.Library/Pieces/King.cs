@@ -7,13 +7,22 @@ namespace Chess.Library.Pieces
     {
 
         public King(Players owner)
-            : base(owner) { }
+            : base(owner)
+        {
+
+        }
 
         public King(BoardPoint coordinates, Players owner)
-            : base(coordinates, owner) { }
+            : base(coordinates, owner)
+        {
+
+        }
 
         public King(int y, int x, Players owner)
-            : base(y, x, owner) { }
+            : base(y, x, owner)
+        {
+
+        }
 
         public override string ToString()
         {
@@ -25,17 +34,8 @@ namespace Chess.Library.Pieces
             if (game.IsCellNotAttacked(y, x, owner))
             {
                 var piece = game.GameBoard[y, x];
-                if (piece != null)
-                {
-                    if (piece.Owner == owner)
-                        result[y][x] = MoveType.Protect;
-                    else
-                        result[y][x] = MoveType.Kill;
-                }
-                else
-                {
-                    result[y][x] = MoveType.Move;
-                }
+
+                result[y][x] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
             }
         }
 
