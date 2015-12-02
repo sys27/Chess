@@ -19,6 +19,85 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void CanMove_All()
+        {
+            var knight = new Knight(Players.PlayerOne);
+            game.GameBoard[4, 4] = knight;
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 6, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 6, 5));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 5));
+        }
+
+        [TestMethod]
+        public void CanMove()
+        {
+            var knight = new Knight(Players.PlayerOne);
+            game.GameBoard[4, 4] = knight;
+            game.GameBoard[6, 3] = new Pawn(Players.PlayerOne);
+
+            Assert.AreEqual(MoveType.Protect, knight.CanMove(game, 6, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 6, 5));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 5));
+        }
+
+        [TestMethod]
+        public void CanMove_Kill()
+        {
+            var knight = new Knight(Players.PlayerOne);
+            game.GameBoard[4, 4] = knight;
+            game.GameBoard[6, 3] = new Pawn(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Kill, knight.CanMove(game, 6, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 6, 5));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 5));
+        }
+
+        [TestMethod]
+        public void CanMove_Check()
+        {
+            var knight = new Knight(Players.PlayerOne);
+            game.GameBoard[4, 4] = knight;
+            game.GameBoard[6, 3] = new King(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Check, knight.CanMove(game, 6, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 6, 5));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 5, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 2));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 3, 6));
+
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 3));
+            Assert.AreEqual(MoveType.Move, knight.CanMove(game, 2, 5));
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_All()
         {
             var knight = new Knight(Players.PlayerOne);
