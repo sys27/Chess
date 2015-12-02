@@ -19,6 +19,156 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void CanMove_LeftMove()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[4, 1] = new Pawn(Players.PlayerOne);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 3));
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 2));
+            Assert.AreEqual(MoveType.Protect, rook.CanMove(game, 4, 1));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 4, 0));
+        }
+
+        [TestMethod]
+        public void CanMove_LeftKill()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[4, 1] = new Pawn(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 3));
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 2));
+            Assert.AreEqual(MoveType.Kill, rook.CanMove(game, 4, 1));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 4, 0));
+        }
+
+        [TestMethod]
+        public void CanMove_LeftCheck()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[4, 1] = new King(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 3));
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 2));
+            Assert.AreEqual(MoveType.Check, rook.CanMove(game, 4, 1));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 4, 0));
+        }
+
+        [TestMethod]
+        public void CanMove_RightMove()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[4, 6] = new Pawn(Players.PlayerOne);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 5));
+            Assert.AreEqual(MoveType.Protect, rook.CanMove(game, 4, 6));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 4, 7));
+        }
+
+        [TestMethod]
+        public void CanMove_RightKill()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[4, 6] = new Pawn(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 5));
+            Assert.AreEqual(MoveType.Kill, rook.CanMove(game, 4, 6));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 4, 7));
+        }
+
+        [TestMethod]
+        public void CanMove_RightCheck()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[4, 6] = new King(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 4, 5));
+            Assert.AreEqual(MoveType.Check, rook.CanMove(game, 4, 6));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 4, 7));
+        }
+
+        [TestMethod]
+        public void CanMove_UpMove()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[1, 4] = new Pawn(Players.PlayerOne);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 3, 4));
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 2, 4));
+            Assert.AreEqual(MoveType.Protect, rook.CanMove(game, 1, 4));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 0, 4));
+        }
+
+        [TestMethod]
+        public void CanMove_UpKill()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[1, 4] = new Pawn(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 3, 4));
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 2, 4));
+            Assert.AreEqual(MoveType.Kill, rook.CanMove(game, 1, 4));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 0, 4));
+        }
+
+        [TestMethod]
+        public void CanMove_UpCheck()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[1, 4] = new King(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 3, 4));
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 2, 4));
+            Assert.AreEqual(MoveType.Check, rook.CanMove(game, 1, 4));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 0, 4));
+        }
+
+        [TestMethod]
+        public void CanMove_DownMove()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[6, 4] = new Pawn(Players.PlayerOne);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 5, 4));
+            Assert.AreEqual(MoveType.Protect, rook.CanMove(game, 6, 4));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 7, 4));
+        }
+
+        [TestMethod]
+        public void CanMove_DownKill()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[6, 4] = new Pawn(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 5, 4));
+            Assert.AreEqual(MoveType.Kill, rook.CanMove(game, 6, 4));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 7, 4));
+        }
+
+        [TestMethod]
+        public void CanMove_DownCheck()
+        {
+            var rook = new Rook(Players.PlayerOne);
+            game.GameBoard[4, 4] = rook;
+            game.GameBoard[6, 4] = new King(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.Move, rook.CanMove(game, 5, 4));
+            Assert.AreEqual(MoveType.Check, rook.CanMove(game, 6, 4));
+            Assert.AreEqual(MoveType.None, rook.CanMove(game, 7, 4));
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_LeftMove()
         {
             var rook = new Rook(Players.PlayerOne);
