@@ -11,7 +11,8 @@ namespace Chess.Library
         Protect,
         Kill,
         GhostKill,
-        Check
+        Check,
+        Castling
 
     }
 

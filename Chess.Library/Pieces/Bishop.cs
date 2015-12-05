@@ -31,8 +31,15 @@ namespace Chess.Library.Pieces
 
         public override MoveType CanMove(Game game, int y, int x)
         {
+            if (y < 0 || y > 7 || x < 0 || x > 7)
+                throw new ArgumentOutOfRangeException();
+
             if (!game.GetCheck(owner))
             {
+                // same cell
+                if (coordinates.Y == y && coordinates.X == x)
+                    return MoveType.None;
+
                 // a cell is not on diagonal
                 if (Math.Abs(coordinates.Y - y) != Math.Abs(coordinates.X - x))
                     return MoveType.None;

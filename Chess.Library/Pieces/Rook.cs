@@ -31,6 +31,64 @@ namespace Chess.Library.Pieces
 
         public override MoveType CanMove(Game game, int y, int x)
         {
+            if (y < 0 || y > 7 || x < 0 || x > 7)
+                throw new ArgumentOutOfRangeException();
+
+            if (!game.GetCheck(owner))
+            {
+                // same cell
+                if (coordinates.Y == y && coordinates.X == x)
+                    return MoveType.None;
+
+                if (coordinates.Y != y || coordinates.X != x)
+                    return MoveType.None;
+
+                Piece piece;
+                if (x < coordinates.X) // left
+                {
+                    for (int i = coordinates.X - 1; i >= x + 1; i--)
+                    {
+                        piece = game.GameBoard[coordinates.Y, i];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+
+                if (x > coordinates.X) // right
+                {
+                    for (int i = coordinates.X + 1; i <= x - 1; i++)
+                    {
+                        piece = game.GameBoard[coordinates.Y, i];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+
+                if (y < coordinates.Y) // up
+                {
+                    for (int i = coordinates.Y - 1; i >= y + 1; i--)
+                    {
+                        piece = game.GameBoard[i, coordinates.X];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+
+                if (y > coordinates.Y) // down
+                {
+                    for (int i = coordinates.Y + 1; i <= y - 1; i++)
+                    {
+                        piece = game.GameBoard[i, coordinates.X];
+                        if (piece != null)
+                            return MoveType.None;
+                    }
+                }
+
+                piece = game.GameBoard[y, x];
+
+                return piece != null ? GetMoveTypeByPiece(piece) : MoveType.Move;
+            }
+
             // todo: reimplement
             return GetAvailableMoves(game)[y][x];
         }
@@ -40,8 +98,6 @@ namespace Chess.Library.Pieces
             var result = new MoveType[8][];
             for (int i = 0; i < 8; i++)
                 result[i] = new MoveType[8];
-
-            // todo: Castling
 
             if (!game.GetCheck(owner))
             {
