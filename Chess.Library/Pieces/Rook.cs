@@ -40,7 +40,7 @@ namespace Chess.Library.Pieces
                 if (coordinates.Y == y && coordinates.X == x)
                     return MoveType.None;
 
-                if (coordinates.Y != y || coordinates.X != x)
+                if (coordinates.Y != y && coordinates.X != x)
                     return MoveType.None;
 
                 Piece piece;
