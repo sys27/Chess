@@ -54,8 +54,6 @@ namespace Chess.Library.Pieces
             for (int i = 0; i < 8; i++)
                 result[i] = new MoveType[8];
 
-            // todo: Castling
-
             var y = coordinates.Y;
             var x = coordinates.X;
 
@@ -82,6 +80,31 @@ namespace Chess.Library.Pieces
                     CheckCell(y + 1, x + 1, result, game);
 
                 CheckCell(y + 1, x, result, game);
+            }
+
+            // castling
+            if (!game.GetCheck(owner) && !isMoved && (y == 0 || y == 7) && x == 4)
+            {
+                if (result[y][x + 1] == MoveType.Move)
+                {
+                    if (game.IsCellNotAttacked(y, x + 2, owner) && game.GameBoard[y, x + 2] == null)
+                    {
+                        var rook = game.GameBoard[y, x + 3] as Rook;
+                        if (rook != null && !rook.IsMoved)
+                            result[y][x + 2] = MoveType.Castling;
+                    }
+                }
+
+                if (result[y][x - 1] == MoveType.Move)
+                {
+                    if (game.IsCellNotAttacked(y, x - 2, owner) && game.GameBoard[y, x - 2] == null &&
+                        game.IsCellNotAttacked(y, x - 3, owner) && game.GameBoard[y, x - 3] == null)
+                    {
+                        var rook = game.GameBoard[y, x - 4] as Rook;
+                        if (rook != null && !rook.IsMoved)
+                            result[y][x - 2] = MoveType.Castling;
+                    }
+                }
             }
 
             return result;

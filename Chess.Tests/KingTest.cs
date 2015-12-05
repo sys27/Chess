@@ -117,6 +117,85 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void CanMove_LeftCastling()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 0] = new Rook(Players.PlayerOne);
+
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 4));
+            Assert.AreEqual(MoveType.Move, king.CanMove(game, 7, 3));
+            Assert.AreEqual(MoveType.Castling, king.CanMove(game, 7, 2));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 1));
+        }
+
+        [TestMethod]
+        public void CanMove_RightCastling()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 7] = new Rook(Players.PlayerOne);
+
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 4));
+            Assert.AreEqual(MoveType.Move, king.CanMove(game, 7, 5));
+            Assert.AreEqual(MoveType.Castling, king.CanMove(game, 7, 6));
+        }
+
+        [TestMethod]
+        public void CanMove_NoLeftCastling_Blocking()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 0] = new Rook(Players.PlayerOne);
+            game.GameBoard[7, 1] = new Pawn(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 4));
+            Assert.AreEqual(MoveType.Move, king.CanMove(game, 7, 3));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 2));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 1));
+        }
+
+        [TestMethod]
+        public void CanMove_NoRightCastling_Blocking()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 7] = new Rook(Players.PlayerOne);
+            game.GameBoard[7, 6] = new Pawn(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 4));
+            Assert.AreEqual(MoveType.Move, king.CanMove(game, 7, 5));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 6));
+        }
+
+        [TestMethod]
+        public void CanMove_NoLeftCastling_Underattack()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 0] = new Rook(Players.PlayerOne);
+            game.GameBoard[0, 3] = new Rook(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 4));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 3));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 2));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 1));
+        }
+
+        [TestMethod]
+        public void CanMove_NoRightCastling_Underattack()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 7] = new Rook(Players.PlayerOne);
+            game.GameBoard[0, 5] = new Rook(Players.PlayerTwo);
+
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 4));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 5));
+            Assert.AreEqual(MoveType.None, king.CanMove(game, 7, 6));
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_AllMove()
         {
             var king = new King(Players.PlayerOne);
@@ -224,6 +303,97 @@ namespace Chess.Tests
             Assert.AreEqual(MoveType.None, moves[5][3]);
             Assert.AreEqual(MoveType.None, moves[5][4]);
             Assert.AreEqual(MoveType.None, moves[5][5]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_LeftCastling()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 0] = new Rook(Players.PlayerOne);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[7][4]);
+            Assert.AreEqual(MoveType.Move, moves[7][3]);
+            Assert.AreEqual(MoveType.Castling, moves[7][2]);
+            Assert.AreEqual(MoveType.None, moves[7][1]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_RightCastling()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 7] = new Rook(Players.PlayerOne);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[7][4]);
+            Assert.AreEqual(MoveType.Move, moves[7][5]);
+            Assert.AreEqual(MoveType.Castling, moves[7][6]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_NoLeftCastling_Blocking()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 0] = new Rook(Players.PlayerOne);
+            game.GameBoard[7, 1] = new Pawn(Players.PlayerTwo);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[7][4]);
+            Assert.AreEqual(MoveType.Move, moves[7][3]);
+            Assert.AreEqual(MoveType.None, moves[7][2]);
+            Assert.AreEqual(MoveType.None, moves[7][1]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_NoRightCastling_Blocking()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 7] = new Rook(Players.PlayerOne);
+            game.GameBoard[7, 6] = new Pawn(Players.PlayerTwo);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[7][4]);
+            Assert.AreEqual(MoveType.Move, moves[7][5]);
+            Assert.AreEqual(MoveType.None, moves[7][6]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_NoLeftCastling_Underattack()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 0] = new Rook(Players.PlayerOne);
+            game.GameBoard[0, 3] = new Rook(Players.PlayerTwo);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[7][4]);
+            Assert.AreEqual(MoveType.None, moves[7][3]);
+            Assert.AreEqual(MoveType.None, moves[7][2]);
+            Assert.AreEqual(MoveType.None, moves[7][1]);
+        }
+
+        [TestMethod]
+        public void GetAvailableMoves_NoRightCastling_Underattack()
+        {
+            var king = new King(Players.PlayerOne);
+            game.GameBoard[7, 4] = king;
+            game.GameBoard[7, 7] = new Rook(Players.PlayerOne);
+            game.GameBoard[0, 5] = new Rook(Players.PlayerTwo);
+
+            var moves = king.GetAvailableMoves(game);
+
+            Assert.AreEqual(MoveType.None, moves[7][4]);
+            Assert.AreEqual(MoveType.None, moves[7][5]);
+            Assert.AreEqual(MoveType.None, moves[7][6]);
         }
 
     }

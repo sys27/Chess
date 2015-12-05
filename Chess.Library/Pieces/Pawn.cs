@@ -41,7 +41,7 @@ namespace Chess.Library.Pieces
             {
                 if (!game.GetCheck(owner))
                 {
-                    if (y - 1 >= 0 && game.GameBoard[y - 1, x] == null)
+                    if (Board.CheckY(y - 1) && game.GameBoard[y - 1, x] == null)
                     {
                         result[y - 1][x] = MoveType.Move;
 
@@ -49,13 +49,13 @@ namespace Chess.Library.Pieces
                             result[y - 2][x] = MoveType.Move;
                     }
 
-                    if (y - 1 >= 0 && x - 1 >= 0)
+                    if (Board.CheckCoordinates(y - 1, x - 1))
                     {
                         var piece = game.GameBoard[y - 1, x - 1];
 
                         result[y - 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
                     }
-                    if (y - 1 >= 0 && x + 1 <= 7)
+                    if (Board.CheckCoordinates(y - 1, x + 1))
                     {
                         var piece = game.GameBoard[y - 1, x + 1];
 
@@ -71,7 +71,7 @@ namespace Chess.Library.Pieces
             {
                 if (!game.GetCheck(owner))
                 {
-                    if (y + 1 >= 0 && game.GameBoard[y + 1, x] == null)
+                    if (Board.CheckY(y + 1) && game.GameBoard[y + 1, x] == null)
                     {
                         result[y + 1][x] = MoveType.Move;
 
@@ -79,13 +79,13 @@ namespace Chess.Library.Pieces
                             result[y + 2][x] = MoveType.Move;
                     }
 
-                    if (y + 1 >= 0 && x - 1 >= 0)
+                    if (Board.CheckCoordinates(y + 1, x - 1))
                     {
                         var piece = game.GameBoard[y + 1, x - 1];
 
                         result[y + 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
                     }
-                    if (y + 1 >= 0 && x + 1 <= 7)
+                    if (Board.CheckCoordinates(y + 1, x + 1))
                     {
                         var piece = game.GameBoard[y + 1, x + 1];
 

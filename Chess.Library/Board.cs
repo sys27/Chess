@@ -23,6 +23,21 @@ namespace Chess.Library
             return new Board(true);
         }
 
+        public static bool CheckY(int y)
+        {
+            return y >= 0 && y <= 7;
+        }
+
+        public static bool CheckX(int x)
+        {
+            return x >= 0 && x <= 7;
+        }
+
+        public static bool CheckCoordinates(int y, int x)
+        {
+            return y >= 0 && y <= 7 && x >= 0 && x <= 7;
+        }
+
         public Piece this[int y, int x]
         {
             get
