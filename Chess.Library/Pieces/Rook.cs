@@ -53,8 +53,7 @@ namespace Chess.Library.Pieces
                             return MoveType.None;
                     }
                 }
-
-                if (x > coordinates.X) // right
+                else if (x > coordinates.X) // right
                 {
                     for (int i = coordinates.X + 1; i <= x - 1; i++)
                     {
@@ -63,8 +62,7 @@ namespace Chess.Library.Pieces
                             return MoveType.None;
                     }
                 }
-
-                if (y < coordinates.Y) // up
+                else if (y < coordinates.Y) // up
                 {
                     for (int i = coordinates.Y - 1; i >= y + 1; i--)
                     {
@@ -73,8 +71,7 @@ namespace Chess.Library.Pieces
                             return MoveType.None;
                     }
                 }
-
-                if (y > coordinates.Y) // down
+                else if (y > coordinates.Y) // down
                 {
                     for (int i = coordinates.Y + 1; i <= y - 1; i++)
                     {

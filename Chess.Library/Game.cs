@@ -117,8 +117,7 @@ namespace Chess.Library
                     var piece = board[_y, _x];
                     if (piece != null && piece.Owner == color && !(piece is King))
                     {
-                        var moves = piece.GetAvailableMoves(this);
-                        var move = moves[y][x];
+                        var move = piece.CanMove(this, y, x);
                         if (move != MoveType.None)
                             return move;
                     }
