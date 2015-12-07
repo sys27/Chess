@@ -12,7 +12,8 @@ namespace Chess.Library
         Kill,
         GhostKill,
         Check,
-        Castling
+        Castling,
+        EnPassant
 
     }
 

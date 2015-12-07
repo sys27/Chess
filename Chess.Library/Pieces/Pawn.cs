@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Chess.Library.Pieces
 {
@@ -15,6 +16,16 @@ namespace Chess.Library.Pieces
         public override string ToString()
         {
             return base.ToString("Pawn");
+        }
+
+        private MoveType CheckEnPassant(Game game)
+        {
+            var lastMove = game.Moves.LastOrDefault();
+            if (lastMove != null && game.GameBoard[lastMove.To] is Pawn &&
+                Math.Abs(lastMove.To.Y - lastMove.From.Y) == 2)
+                return MoveType.EnPassant;
+            else
+                return MoveType.GhostKill;
         }
 
         public override MoveType CanMove(Game game, int y, int x)
@@ -53,13 +64,13 @@ namespace Chess.Library.Pieces
                     {
                         var piece = game.GameBoard[y - 1, x - 1];
 
-                        result[y - 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
+                        result[y - 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : CheckEnPassant(game);
                     }
                     if (Board.CheckCoordinates(y - 1, x + 1))
                     {
                         var piece = game.GameBoard[y - 1, x + 1];
 
-                        result[y - 1][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
+                        result[y - 1][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : CheckEnPassant(game);
                     }
                 }
                 else
@@ -83,13 +94,13 @@ namespace Chess.Library.Pieces
                     {
                         var piece = game.GameBoard[y + 1, x - 1];
 
-                        result[y + 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
+                        result[y + 1][x - 1] = piece != null ? GetMoveTypeByPiece(piece) : CheckEnPassant(game);
                     }
                     if (Board.CheckCoordinates(y + 1, x + 1))
                     {
                         var piece = game.GameBoard[y + 1, x + 1];
 
-                        result[y + 1][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : MoveType.GhostKill;
+                        result[y + 1][x + 1] = piece != null ? GetMoveTypeByPiece(piece) : CheckEnPassant(game);
                     }
                 }
                 else

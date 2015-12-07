@@ -18,6 +18,8 @@ namespace Chess.Tests
             game = new Game(Board.CreateEmpty());
         }
 
+        #region CanMove
+
         [TestMethod]
         public void CanMove_BlackAllMove()
         {
@@ -189,6 +191,10 @@ namespace Chess.Tests
             Assert.AreEqual(MoveType.None, pawn.CanMove(game, 2, 0));
             Assert.AreEqual(MoveType.None, pawn.CanMove(game, 3, 0));
         }
+
+        #endregion CanMove
+
+        #region GetAvailableMoves
 
         [TestMethod]
         public void GetAvailableMoves_BlackAllMove()
@@ -387,6 +393,8 @@ namespace Chess.Tests
             Assert.AreEqual(MoveType.None, moves[2][0]);
             Assert.AreEqual(MoveType.None, moves[3][0]);
         }
+
+        #endregion GetAvailableMoves
 
     }
 
