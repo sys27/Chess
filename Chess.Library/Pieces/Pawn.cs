@@ -28,11 +28,8 @@ namespace Chess.Library.Pieces
                 return MoveType.GhostKill;
         }
 
-        public override MoveType CanMove(Game game, int y, int x)
+        protected override MoveType _CanMove(Game game, int y, int x)
         {
-            if (y < 0 || y > 7 || x < 0 || x > 7)
-                throw new ArgumentOutOfRangeException();
-
             // todo: reimplement
             return GetAvailableMoves(game)[y][x];
         }

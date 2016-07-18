@@ -55,7 +55,15 @@ namespace Chess.Library.Pieces
                 return MoveType.Kill;
         }
 
-        public abstract MoveType CanMove(Game game, int y, int x);
+        protected abstract MoveType _CanMove(Game game, int y, int x);
+
+        public MoveType CanMove(Game game, int y, int x)
+        {
+            if (y < 0 || y > 7 || x < 0 || x > 7)
+                throw new ArgumentOutOfRangeException();
+
+            return _CanMove(game, y, x);
+        }
 
         public MoveType CanMove(Game game, BoardPoint to)
         {
