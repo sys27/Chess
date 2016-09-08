@@ -196,6 +196,18 @@ namespace Chess.Tests
         }
 
         [TestMethod]
+        public void CanMove_TwoKingAttack()
+        {
+            var whiteKing = new King(Players.PlayerOne);
+            var blackKing = new King(Players.PlayerTwo);
+
+            game.GameBoard[4, 4] = whiteKing;
+            game.GameBoard[6, 4] = blackKing;
+
+            Assert.AreEqual(MoveType.None, whiteKing.CanMove(game, 5, 4));
+        }
+
+        [TestMethod]
         public void GetAvailableMoves_AllMove()
         {
             var king = new King(Players.PlayerOne);
